@@ -1,0 +1,44 @@
+h1 {
+    font-size: 42px;
+}
+h2 {
+    font-size: 30px;
+}
+.menu .button {
+    font-size: 12px;
+}
+.vertical-center {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+}
+.horizontal-center {
+    width: 100%;
+    height: 100%;
+}
+.menu {
+    border-radius: 0;
+    overflow: auto;
+}
+.gamearea td {
+    font-size: 14px;
+}
+.winner {
+    font-size: 32px;
+}
+
+@media screen and (orientation: landscape) {
+    .gamearea {
+        flex-direction: row;
+    }
+    .gamearea .gamebody {
+        height: 100%;
+        width: calc(100% - 150px);
+    }
+    .gamearea .celloptions {
+        height: 100%;
+        width: 150px;
+    }
+}

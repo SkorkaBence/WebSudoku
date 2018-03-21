@@ -1,0 +1,217 @@
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+canvas, main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+canvas {
+    z-index: 0;
+}
+main {
+    z-index: 10;
+}
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+  }
+.vertical-center {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-width: 100%;
+}
+.horizontal-center {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    max-width: 100%;
+}
+.menu {
+    width: 400px;
+    text-align: center;
+    padding: 20px;
+    border: none;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 8px 0px, rgba(0, 0, 0, 0.24) 0px 8px 8px 0px;
+    text-align: center;
+    max-width: 100%;
+    max-width: 100%;
+    transition: all 0.2s;
+}
+.menu .button {
+    position: relative;
+    display: block;
+    background-color: lightblue;
+    border: none;
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 8px;
+    transition: all 0.2s;
+    margin: 8px;
+    padding: 12px 22px;
+    cursor: pointer;
+    color: black;
+    text-transform: uppercase;
+    font-family: inherit;
+    font-size: 16px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
+    outline: none;
+}
+.menu .button:hover {
+    background-color: rgb(132, 215, 243);
+    box-shadow: 0 0 8px 0 rgba(0,0,0,.12),0 8px 8px 0 rgba(0,0,0,.24);
+}
+.menu .menuicon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translate(0, -50%);
+    font-size: inherit;
+}
+h1 {
+    display: block;
+    margin: 0;
+    padding: 0;
+    font-family: inherit;
+    font-weight: lighter;
+    font-size: 63px;
+    text-transform: uppercase;
+}
+h2 {
+    display: block;
+    margin: 0;
+    padding: 0;
+    font-family: inherit;
+    font-weight: lighter;
+    font-size: 42px;
+}
+.gamearea {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.gamearea .gamebody {
+    border-collapse: collapse;
+    height: calc(100% - 150px);
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+.gamearea .celloptions {
+    height: 150px;
+    width: 100%;
+    overflow: auto;
+    text-align: center;
+    padding: 20px;
+}
+.gamearea table {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+}
+
+.gamearea td {
+    border: 1px solid gray;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 32px;
+    background-color: white;
+    transition: all 0.2s;
+}
+.gamearea td.fixed-cell {
+    cursor: auto;
+    color: black;
+}
+.gamearea td.changeable-cell {
+    cursor: pointer;
+    color: rgb(48, 48, 190);
+    box-shadow: inset 0 0 8px 2px rgba(255, 255, 255, 0.6);
+}
+.gamearea td.changeable-cell:hover {
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.6);
+}
+.gamearea td.selected-cell {
+    box-shadow: inset 0 0 8px 5px rgba(0, 0, 0, 0.6);
+}
+.gamearea td.section-border-left {
+    border-left-color: black;
+    border-left-width: 3px;
+}
+.gamearea td.section-border-top {
+    border-top-color: black;
+    border-top-width: 3px;
+}
+.gamearea td.section-border-right {
+    border-right-color: black;
+    border-right-width: 3px;
+}
+.gamearea td.section-border-bottom {
+    border-bottom-color: black;
+    border-bottom-width: 3px;
+}
+.gamearea .option {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    border: 1px solid gray;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.winner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 50px;
+    font-family: 'Sigmar One', cursive;
+    color: lightblue;
+    transform: translate(-50%, -50%);
+
+    animation: winner-text 0.6s ease-out;
+    transform: scale(1.5), rotate(15deg);
+}
+@keyframes winner-text {
+    0% {
+        transform: translate(-50%, -50%) scale(0.4) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.5) rotate(15deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
