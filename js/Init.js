@@ -8,10 +8,7 @@
 
 let currentScene = null;
 let renderBlock = false;
-let LoadedImages = [];
-const IMAGES = {
-
-};
+let gamesave = null;
 
 window.addEventListener("load", function() {
     console.log("Initilaizing...");
@@ -20,14 +17,16 @@ window.addEventListener("load", function() {
         alert("Ez a föngésző nem támogat FETCH -et!");
     }
 
-    OnResized();
-    window.RequiredImages = [];
-    for (let k in IMAGES) {
-        window.RequiredImages.push(IMAGES[k]);
-    }
-    LoadNextImage();
+    gamesave = new Database();
 
-    ChangeScene(new Menu());
+    OnResized();
+
+    let game = LoadGameState();
+    if (game !== false) {
+        ChangeScene(new InGame(game));
+    } else {
+        ChangeScene(new Menu());
+    }
 
     let cv = $("canvas");
     document.addEventListener("mousemove", function(e) {
@@ -46,18 +45,6 @@ function OnResized() {
 
     if (!renderBlock && typeof(currentScene) == "object" && currentScene != null && typeof(currentScene.resized) == "function") {
         currentScene.resized();
-    }
-}
-
-function LoadNextImage() {
-    if (RequiredImages.length > 0) {
-        let img = RequiredImages.pop();
-        let imgtag = document.createElement("img");
-        imgtag.addEventListener("load", function() {
-            LoadNextImage();
-        })
-        imgtag.src = img;
-        $("document").appendChild(imgtag);
     }
 }
 
@@ -84,4 +71,22 @@ function ChangeScene(newScene) {
     }
 
     renderBlock = false;
+}
+
+function ClearGameState() {
+    gamesave.remove("gamestate");
+}
+
+function SaveGameState(serializedGameState) {
+    gamesave.set("gamestate", serializedGameState);
+}
+
+function LoadGameState() {
+    const state = gamesave.get("gamestate");
+    if (typeof(state) != "undefined" && state != null) {
+        let s = new Sudoku();
+        s.deserialize(state);
+        return s;
+    }
+    return false;
 }

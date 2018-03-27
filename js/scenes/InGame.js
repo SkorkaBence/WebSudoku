@@ -92,20 +92,26 @@ class InGame extends Scene {
 
             let options = $(".celloptions");
             options.innerHTML = "";
-            for (let i = 0; i < this.game.size; i++) {
+            for (let i = 0; i <= this.game.size; i++) {
                 let box = document.createElement("div");
                 box.className = "option";
-                this.textures[i].setTexture(box);
+                if (i > 0) {
+                    this.textures[i - 1].setTexture(box);
+                } else {
+                    box.innerHTML = "<span class='fa fa-eraser'></span>";
+                }
                 box.addEventListener("click", ((function(id) {
                     return function() {
                         t.changeCell(id);
                     };
-                })(i + 1)));
+                })(i)));
                 options.appendChild(box);
             }
 
             this.backgroundCtx.fillStyle="#FFFFFF";
             this.backgroundCtx.fillRect(0, 0, this.backgroundCanvas.width, this.backgroundCanvas.height);
+
+            SaveGameState(this.game.serialize());
 
             this.redraw = false;
         }
@@ -183,6 +189,7 @@ class InGame extends Scene {
         } else if (res == "mistakes") {
 
         } else if (res == "correct") {
+            ClearGameState();
             ChangeScene(new Win());
         }
     }

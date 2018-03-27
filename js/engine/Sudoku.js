@@ -3,13 +3,34 @@ class SudokuCell {
         this.value = 0;
         this.fixed = false;
     }
+
+    clone() {
+        let c = new SudokuCell();
+        c.value = this.value;
+        c.fixed = this.fixed;
+        return c;
+    }
+
+    serialize() {
+        return JSON.stringify({
+            value: this.value,
+            fixed: this.fixed
+        });
+    }
+
+    deserialize(raw) {
+        const data = JSON.parse(raw);
+        this.value = data.value;
+        this.fixed = data.fixed;
+    }
 }
 
 class Sudoku {
 
     constructor(size) {
         if (typeof(size) != "number") {
-            console.error("First parameter must be a number");
+            //console.error("First parameter must be a number");
+            return;
         }
 
         if (size == 2 || size == 3) {
@@ -36,13 +57,42 @@ class Sudoku {
         let res = new Sudoku(this.size);
         for (let x = 0; x < this.size; ++x) {
             for (let y = 0; y < this.size; ++y) {
-                let c = new SudokuCell();
-                c.value = this.arena[x][y].value;
-                c.fixed = this.arena[x][y].fixed;
-                res.arena[x][y] = c;
+                res.arena[x][y] = this.arena[x][y].clone();
             }
         }
         return res;
+    }
+
+    serialize() {
+        let arena_data = [];
+        for (let x = 0; x < this.size; ++x) {
+            arena_data[x] = [];
+            for (let y = 0; y < this.size; ++y) {
+                arena_data[x][y] = this.arena[x][y].serialize();
+            }
+        }
+        return JSON.stringify({
+            size: this.size,
+            subCells: this.subCells,
+            subCellSize: this.subCellSize,
+            arena: arena_data
+        });
+    }
+
+    deserialize(raw) {
+        const data = JSON.parse(raw);
+        this.size = data.size;
+        this.subCells = data.subCells;
+        this.subCellSize = data.subCellSize;
+        this.arena = [];
+        for (let x = 0; x < this.size; ++x) {
+            this.arena[x] = [];
+            for (let y = 0; y < this.size; ++y) {
+                let c = new SudokuCell();
+                c.deserialize(data.arena[x][y]);
+                this.arena[x][y] = c;
+            }
+        }
     }
 
     isValidCell(x, y) {

@@ -1,17 +1,21 @@
 class Database {
 
-    constructor(table) {
-        if (!window.indexedDB) {
-            window.alert("Your browser doesn't support a stable version of IndexedDB.");
+    constructor() {
+        if (!window.localStorage) {
+            window.alert("Your browser doesn't support localStorage");
         }
+    }
 
-        this.request = window.indexedDB.open(table, 3);
-        this.request.onerror = function(event) {
-            console.error("Failed to open the database", event);
-        };
-        this.request.onsuccess = function(event) {
+    get(name) {
+        return localStorage.getItem(name);
+    }
 
-        };
+    set(name, data) {
+        localStorage.setItem(name, data);
+    }
+
+    remove(name) {
+        localStorage.removeItem(name);
     }
 
 }
