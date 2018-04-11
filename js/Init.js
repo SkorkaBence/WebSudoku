@@ -1,6 +1,7 @@
 /*
     Init.js - Game initializer
     Copyright (c) 2018 Bence Skorka. All rights reserved.
+    https://github.com/SkorkaBence/WebSudoku
 */
 
 let currentScene = null;
