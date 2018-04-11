@@ -1,3 +1,8 @@
+/*
+    endine/Generator.js - Game initializer
+    Copyright (c) 2018 Bence Skorka. All rights reserved.
+*/
+
 function GenerateGame(size, empty_places) {
     console.log("Generating full sudoku...");
     let generationTime = -1 * Date.now();

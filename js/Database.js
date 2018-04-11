@@ -1,3 +1,8 @@
+/*
+    Database.js - Game initializer
+    Copyright (c) 2018 Bence Skorka. All rights reserved.
+*/
+
 class Database {
 
     constructor() {

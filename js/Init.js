@@ -1,9 +1,6 @@
 /*
     Init.js - Game initializer
     Copyright (c) 2018 Bence Skorka. All rights reserved.
-    This file is part of the Sudoku 
-
-
 */
 
 let currentScene = null;
@@ -15,6 +12,10 @@ window.addEventListener("load", function() {
 
     if (!window.fetch) {
         alert("Ez a föngésző nem támogat FETCH -et!");
+    }
+
+    if (!CSS.supports("display", "grid")) {
+        alert("Ez a föngésző nem támogat CSS GRID -et!");
     }
 
     gamesave = new Database();
@@ -32,8 +33,6 @@ window.addEventListener("load", function() {
     document.addEventListener("mousemove", function(e) {
         currentScene.onMouseMove(e);
     });
-
-    NextFrame();
 });
 
 window.addEventListener("resize", OnResized);
@@ -49,7 +48,13 @@ function OnResized() {
 }
 
 function NextFrame() {
-    if (!renderBlock && typeof(currentScene) == "object" && currentScene != null && typeof(currentScene.render) == "function") {
+    if (renderBlock) {
+        return;
+    }
+    if (typeof(currentScene) == "object" && currentScene != null && typeof(currentScene.render) == "function") {
+        if (!currentScene.requireFrameRendering()) {
+            return;
+        }
         currentScene.render();
     }
     requestAnimationFrame(function() {
@@ -71,6 +76,7 @@ function ChangeScene(newScene) {
     }
 
     renderBlock = false;
+    NextFrame();
 }
 
 function ClearGameState() {

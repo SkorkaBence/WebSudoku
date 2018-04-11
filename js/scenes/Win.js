@@ -1,4 +1,7 @@
 /*
+    scenes/Win.js - Game initializer
+    Copyright (c) 2018 Bence Skorka. All rights reserved.
+
     The wirework effect was created by following this guide:
         https://airbrake.io/blog/javascript/fourth-of-july-javascript-fireworks
 */
@@ -193,7 +196,10 @@ class Win extends Scene {
 
     load() {
         this.main.innerHTML = `
-            <div class="winner noselect">Gratulálok!</div>
+            <div class="winner noselect">
+                Gratulálok!
+                <button>Új játék</button>
+            </div>
         `;
     }
 

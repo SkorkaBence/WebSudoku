@@ -1,3 +1,8 @@
+/*
+    endine/Solver.js - Game initializer
+    Copyright (c) 2018 Bence Skorka. All rights reserved.
+*/
+
 function TryToSolveSudoku(game, get_solution_count) {
     let minV = game.size + 1;
     let minX;

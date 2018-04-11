@@ -1,3 +1,8 @@
+/*
+    endine/Sudoku.js - Game initializer
+    Copyright (c) 2018 Bence Skorka. All rights reserved.
+*/
+
 class SudokuCell {
     constructor() {
         this.value = 0;
