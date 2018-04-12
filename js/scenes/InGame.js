@@ -83,6 +83,9 @@ class InGame extends Scene {
                 </div>
                 <div class="celloptions"></div>
             </div>
+            <audio autoplay loop>
+                <source src="audio/music.mp3" type="audio/mpeg">
+            </auduo>
         `;
 
         $(".exitbtn").addEventListener("click", function() {
@@ -103,6 +106,11 @@ class InGame extends Scene {
 
     resized() {
         this.render();
+
+        const _this = this;
+        window.setTimeout(function() {
+            _this.render();
+        }, 100);
     }
 
     requireFrameRendering() {
@@ -116,8 +124,8 @@ class InGame extends Scene {
         let options = $(".celloptions");
         options.innerHTML = "";
 
-        const usableWidth = table.parentNode.clientWidth - 3;
-        const usableHeight = table.parentNode.clientHeight - 3;
+        const usableWidth = table.parentNode.clientWidth - 4;
+        const usableHeight = table.parentNode.clientHeight - 4;
 
         const cellsize = Math.min(usableWidth / this.game.size, usableHeight / this.game.size);
         const optionsize = Math.max(Math.min((cellsize * this.game.size) / (this.game.size + 1) - 10, options.clientHeight - 20), 40);

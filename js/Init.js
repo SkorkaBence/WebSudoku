@@ -91,9 +91,14 @@ function SaveGameState(serializedGameState) {
 function LoadGameState() {
     const state = gamesave.get("gamestate");
     if (typeof(state) != "undefined" && state != null) {
-        let s = new Sudoku();
-        s.deserialize(state);
-        return s;
+        try {
+            let s = new Sudoku();
+            s.deserialize(state);
+            return s;
+        } catch (e) {
+            console.warn("Error while trying to deserialize saved state:", e);
+            return false;
+        }
     }
     return false;
 }

@@ -122,7 +122,7 @@ h2 {
     z-index: 100;
     /*background-color: white;*/
     /*box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 8px 0px, rgba(0, 0, 0, 0.24) 0px 8px 8px 0px;*/
-    transition: all 0.2s;
+    /*transition: all 0.2s;*/
 
     display: grid;
     grid-template-areas:
@@ -137,6 +137,7 @@ h2 {
     padding: 0;
     margin: 0;
     grid-area: gamebody;
+    overflow: hidden;
 }
 .gamearea .celloptions {
     overflow: auto;
@@ -164,8 +165,9 @@ h2 {
 }
 .gamearea td.changeable-cell {
     cursor: pointer;
-    color: rgb(48, 48, 190);
-    box-shadow: inset 0 0 8px 2px rgba(255, 255, 255, 0.6);
+    color: rgb(67, 67, 190);
+    box-shadow: inset 0 0 8px 4px rgba(255, 255, 255, 0.6);
+    font-family: 'Shadows Into Light', cursive;
 }
 .gamearea td.changeable-cell:hover {
     box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.6);

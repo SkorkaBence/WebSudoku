@@ -38,14 +38,19 @@ h2 {
 
 @media screen and (orientation: landscape) {
     .gamearea {
-        flex-direction: row;
+        grid-template-areas:
+            "header-left gamebody celloptions"
+            "header-center gamebody celloptions"
+            "header-right gamebody celloptions";
+        grid-template-columns: 50px auto 150px;
+        grid-template-rows: 50px auto 60px;
     }
-    .gamearea .gamebody {
+    /*.gamearea .gamebody {
         height: 100%;
         width: calc(100% - 150px);
     }
     .gamearea .celloptions {
         height: 100%;
         width: 150px;
-    }
+    }*/
 }
