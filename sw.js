@@ -4,40 +4,10 @@
     https://github.com/SkorkaBence/WebSudoku
 */
 
-var must_cache = [
-    '/'
-];
-var might_cache = [
-];
-var never_cache = [
-];
-
 var staticCacheName = 'sudoku-v1';
 
 function SWLog(txt) {
     console.log("[Sudoku Service Worker] " + txt);
-}
-
-function cacheStatus(url) {
-    for (var i = 0; i < never_cache.length; i++) {
-        if (url.indexOf(never_cache[i]) > -1) {
-            return "no_cache";
-        }
-    }
-
-    for (var i = 0; i < might_cache.length; i++) {
-        if (url.indexOf(might_cache[i]) > -1) {
-            return "might_cache";
-        }
-    }
-
-    for (var i = 0; i < must_cache.length; i++) {
-        if (url.indexOf(must_cache[i]) > -1) {
-            return "must_cache";
-        }
-    }
-
-    return "unknown";
 }
 
 self.addEventListener('install', function(event) {
@@ -53,30 +23,22 @@ self.addEventListener('activate', function(event) {
 
 self.addEventListener('fetch', function(event) {
     var url = event.request.url;
-    var cahce_status = cacheStatus(url);
-    //SWLog("FETCH: " + url + " || " + cahce_status);
-
-    if (cahce_status == "no_cache") {
-        return;
-    }
 
     event.waitUntil(
-        caches.match(event.request).then(function(response) {
+        caches.match(url).then(function(response) {
             if (response) {
-                if (cahce_status == "must_cache" || !navigator.onLine) {
+                if (!navigator.onLine) {
                     return response;
                 }
             }
             return fetch(event.request).then(function(response) {
-                if (cahce_status == "might_cache" || cahce_status == "must_cache") {
-                    return caches.open(staticCacheName).then(function(cache) {
-                        cache.put(event.request.url, response.clone());
-                        return response;
-                    });
-                }
+                return caches.open(staticCacheName).then(function(cache) {
+                    caches.put(url, response.clone());
+                    return response;
+                });
             });
         }).catch(function(error) {
-            //SWLog('Cache error');
+            SWLog('Cache error:', error);
         })
     );
 });
