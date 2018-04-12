@@ -62,3 +62,26 @@ function calculateDistance(aX, aY, bX, bY) {
     let yDistance = aY - bY;
     return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
 }
+
+function pad(num, size) {
+    var s = "000000000" + num;
+    return s.substr(s.length-size);
+}
+
+function SecondsToReadableTime(sec) {
+    let negative = false;
+
+    if (sec < 0) {
+        negative = true;
+        sec = -1 * sec;
+    }
+
+    let strs = [];
+
+    while (sec > 0) {
+        strs.unshift(pad(sec % 60, 2));
+        sec = Math.floor(sec / 60);
+    }
+
+    return negative ? "-" : "" + strs.join(":");
+}

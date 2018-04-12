@@ -50,6 +50,7 @@ class Sudoku {
 
         this.size = size;
         this.arena = [];
+        this.timer = 0;
 
         for (let x = 0; x < size; ++x) {
             this.arena[x] = [];
@@ -57,6 +58,10 @@ class Sudoku {
                 this.arena[x][y] = new SudokuCell();
             }
         }
+    }
+
+    secondTick() {
+        ++this.timer;
     }
 
     clone() {
@@ -81,6 +86,7 @@ class Sudoku {
             size: this.size,
             subCells: this.subCells,
             subCellSize: this.subCellSize,
+            timer: this.timer,
             arena: arena_data
         });
     }
@@ -90,6 +96,7 @@ class Sudoku {
         this.size = data.size;
         this.subCells = data.subCells;
         this.subCellSize = data.subCellSize;
+        this.timer = data.timer;
         this.arena = [];
         for (let x = 0; x < this.size; ++x) {
             this.arena[x] = [];

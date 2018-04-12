@@ -12,6 +12,8 @@ class CellTexture {
         this.background = "";
         this.selectedCellX = -1;
         this.selectedCellY = -1;
+        this.audioPlayer = null;
+        this.secondTimer = null;
 
         if (type == "color") {
             this.background = data;
@@ -72,25 +74,48 @@ class InGame extends Scene {
     }
 
     load() {
+        const _this = this;
+
         this.main.innerHTML = `
             <div class="fullscreen background" id="sudokubg"></div>
             <div class="gamearea noselect">
-                <div class="exitbtn">
-                    <i class="material-icons">exit_to_app</i>
+                <div class="header-left">
+                    <div class="headerbutton" id="exitbtn">
+                        <i class="material-icons">exit_to_app</i>
+                    </div>
+                </div>
+                <div class="header-center">
+                    <div id="timer" class="timer"></div>
+                </div>
+                <div class="header-right">
+                    <div class="headerbutton" id="volumebtn">
+                        <i class="material-icons">error</i>
+                    </div>
                 </div>
                 <div class="gamebody">
                     <table id="gametable"></table>
                 </div>
                 <div class="celloptions"></div>
             </div>
-            <audio autoplay loop>
+            <audio autoplay loop id="backgroundmusic">
                 <source src="audio/music.mp3" type="audio/mpeg">
             </auduo>
         `;
 
-        $(".exitbtn").addEventListener("click", function() {
+        this.audioPlayer = $("#backgroundmusic");
+        this.timerModule = $("#timer");
+
+        $("#exitbtn").addEventListener("click", function() {
             ClearGameState();
             ChangeScene(new Menu());
+        });
+        $("#volumebtn").addEventListener("click", function() {
+            if (_this.audioPlayer.paused) {
+                _this.audioPlayer.play();
+            } else {
+                _this.audioPlayer.pause();
+            }
+            _this.render();
         });
 
         //$("#sudokubg").style.backgroundImage = "url('img/backgrounds/" +  + "')";
@@ -98,10 +123,19 @@ class InGame extends Scene {
         $("#sudokubg").style.backgroundImage = "url('" + bgurl + "')";
 
         this.render();
+        window.setTimeout(function() {
+            _this.render();
+        }, 100);
+
+        this.secondTimer = window.setInterval(function() {
+            _this.game.secondTick();
+            _this.timerModule.innerText = SecondsToReadableTime(_this.game.timer);
+        }, 1000);
     }
 
     unload() {
         this.main.innerHTML = "";
+        window.clearInterval(this.secondTimer);
     }
 
     resized() {
@@ -169,6 +203,12 @@ class InGame extends Scene {
                 };
             })(i)));
             options.appendChild(box);
+        }
+
+        if (this.audioPlayer.paused) {
+            $("#volumebtn .material-icons").innerText = "volume_off";
+        } else {
+            $("#volumebtn .material-icons").innerText = "volume_up";
         }
 
         /*this.backgroundCtx.fillStyle = "#FFFFFF";
