@@ -211,6 +211,9 @@ h2 {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+.gamearea .option.disabled {
+    opacity: 0.3;
+}
 .gamearea .exitbtn {
     position: relative;
     display: block;

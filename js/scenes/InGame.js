@@ -143,18 +143,9 @@ class InGame extends Scene {
             table.appendChild(tr);
         }
 
-        let possibilities = [];
-        for (let i = 0; i <= this.game.size; i++) {
-            possibilities.push(i);
-        }
+        let possibilities = this.game.getPossibleValuesBoolArray(this.selectedCellX, this.selectedCellY);
 
-        if (this.selectedCellX > -1 && this.selectedCellY > -1) {
-            possibilities = [0].concat(this.game.getPossibleValues(this.selectedCellX, this.selectedCellY));
-        }
-
-        for (let j = 0; j < possibilities.length; j++) {
-            let i = possibilities[j];
-
+        for (let i = 0; i <= this.game.size; ++i) {
             let box = document.createElement("div");
             box.className = "option";
             box.style.width = optionsize + "px";
@@ -165,6 +156,9 @@ class InGame extends Scene {
                 let sp = document.createElement("span");
                 sp.innerHTML = box.innerHTML;
                 box.innerHTML = "";
+                if (!possibilities[i - 1]) {
+                    box.classList.add("disabled");
+                }
                 box.appendChild(sp);
             } else {
                 box.innerHTML = "<span class='fa fa-eraser'></span>";

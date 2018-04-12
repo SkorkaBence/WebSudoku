@@ -152,6 +152,23 @@ class Sudoku {
             return [];
         }
 
+        let boolarr = this.getPossibleValuesBoolArray(x, y);
+
+        let res = [];
+        for (let i = 0; i < boolarr.length; ++i) {
+            if (boolarr[i]) {
+                res.push(i + 1);
+            }
+        }
+
+        return res;
+    }
+
+    getPossibleValuesBoolArray(x, y) {
+        if (!this.isValidCell(x, y)) {
+            return generateArray(this.size, false);
+        }
+
         let boolarr = generateArray(this.size, true);
 
         for (let i = 0; i < this.size; ++i) {
@@ -170,14 +187,7 @@ class Sudoku {
             }
         }
 
-        let res = [];
-        for (let i = 0; i < boolarr.length; ++i) {
-            if (boolarr[i]) {
-                res.push(i + 1);
-            }
-        }
-
-        return res;
+        return boolarr;
     }
 
     getResult() {
