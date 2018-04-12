@@ -77,10 +77,15 @@ function SecondsToReadableTime(sec) {
     }
 
     let strs = [];
+    const dividers = [60, 60, 24, 365];
+    let current_divider = 0;
 
     while (sec > 0) {
-        strs.unshift(pad(sec % 60, 2));
-        sec = Math.floor(sec / 60);
+        const divide = dividers[current_divider];
+        ++current_divider;
+
+        strs.unshift(pad(sec % divide, 2));
+        sec = Math.floor(sec / divide);
     }
 
     return negative ? "-" : "" + strs.join(":");
