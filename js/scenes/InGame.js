@@ -15,6 +15,11 @@ class CellTexture {
         this.audioPlayer = null;
         this.secondTimer = null;
 
+        /* HELPS */
+        this.helpIcons = false;
+        this.checkCellWhenChanged = false;
+        /* HELPS */
+
         if (type == "color") {
             this.background = data;
         } else if (type == "number") {
@@ -97,6 +102,7 @@ class InGame extends Scene {
                 </div>
                 <div class="celloptions"></div>
             </div>
+            <div class="watermark-animation" id="sadface">&#128542;</div>
             <audio autoplay loop id="backgroundmusic">
                 <source src="audio/music.mp3" type="audio/mpeg">
             </auduo>
@@ -162,7 +168,7 @@ class InGame extends Scene {
         const usableHeight = table.parentNode.clientHeight - 4;
 
         const cellsize = Math.min(usableWidth / this.game.size, usableHeight / this.game.size);
-        const optionsize = Math.max(Math.min((cellsize * this.game.size) / (this.game.size + 1) - 10, options.clientHeight - 20), 40);
+        const optionsize = Math.max(Math.min((cellsize * this.game.size) / (this.game.size/* + 1*/) - 10, options.clientHeight - 20), 40);
 
         table.innerHTML = "";
         for (let y = 0; y < this.game.size; ++y) {
@@ -177,9 +183,15 @@ class InGame extends Scene {
             table.appendChild(tr);
         }
 
-        let possibilities = this.game.getPossibleValuesBoolArray(this.selectedCellX, this.selectedCellY);
+        let possibilities;
 
-        for (let i = 0; i <= this.game.size; ++i) {
+        if (this.helpIcons) {
+            possibilities = this.game.getPossibleValuesBoolArray(this.selectedCellX, this.selectedCellY);
+        } else {
+            possibilities = generateArray(this.game.size, true);
+        }
+
+        for (let i = 1; i <= this.game.size; ++i) {
             let box = document.createElement("div");
             box.className = "option";
             box.style.width = optionsize + "px";
@@ -194,6 +206,7 @@ class InGame extends Scene {
                     box.classList.add("disabled");
                 }
                 box.appendChild(sp);
+                box.id = "cell-option-" + i;
             } else {
                 box.innerHTML = "<span class='fa fa-eraser'></span>";
             }
@@ -278,12 +291,31 @@ class InGame extends Scene {
     selectCell(x, y) {
         this.selectedCellX = x;
         this.selectedCellY = y;
+
+        const cellValue = this.game.getCell(x, y);
+        if (cellValue !== false && cellValue > 0) {
+            this.game.setCell(x, y, 0);
+        }
         this.render();
     }
 
     changeCell(id) {
         //console.log(id);
+
+        if (this.checkCellWhenChanged) {
+            const possibilities = this.game.getPossibleValuesBoolArray(this.selectedCellX, this.selectedCellY);
+            if (!possibilities[id - 1]) {
+                //$("#cell-option-" + id).classList.add("invalid-choiche");
+                window.navigator.vibrate([200, 100, 200]);
+                this.showSadFace();
+                return;
+            }
+        }
+
         this.game.setCell(this.selectedCellX, this.selectedCellY, id);
+        this.selectedCellX = -1;
+        this.selectedCellY = -1;
+
         this.render();
 
         let res = this.game.getResult();
@@ -295,6 +327,14 @@ class InGame extends Scene {
             ClearGameState();
             ChangeScene(new Win());
         }
+    }
+
+    showSadFace() {
+        let face = $("#sadface");
+        face.classList.add("visible");
+        window.setTimeout(function() {
+            face.classList.remove("visible");
+        }, 800);
     }
 
 }

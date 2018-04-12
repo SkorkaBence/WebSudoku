@@ -39,8 +39,8 @@ h2 {
 @media screen and (orientation: landscape) {
     .gamearea {
         grid-template-areas:
-            "header-left gamebody celloptions"
-            "none gamebody celloptions"
+            "header-left gamebody none2"
+            "none1 gamebody celloptions"
             "header-right gamebody header-center";
         grid-template-columns: 50px auto 150px;
         grid-template-rows: 50px auto 60px;

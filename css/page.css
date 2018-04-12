@@ -145,6 +145,7 @@ h2 {
     text-align: center;
     /*padding: 20px;*/
     grid-area: celloptions;
+    align-self: center;
 }
 .gamearea table {
     margin-left: auto;
@@ -300,5 +301,32 @@ h2 {
     100% {
         transform: translate(-50%, -50%) scale(1) rotate(0deg);
         opacity: 1;
+    }
+}
+.watermark-animation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: auto;
+    width: auto;
+    transform: translate(-50%, -50%);
+    display: none;
+    font-size: 90px;
+    z-index: 1000;
+}
+.watermark-animation.visible {
+    display: block;
+    opacity: 0;
+
+    animation: watermark-show 0.8s ease-in;
+}
+@keyframes watermark-show {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(3);
     }
 }
