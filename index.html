@@ -22,6 +22,7 @@
         <script src="js/functions.js" defer></script>
         <script src="js/Database.js" defer></script>
         <script src="js/Scene.js" defer></script>
+        <script src="js/AppManager.js" defer></script>
         <script src="js/scenes/Menu.js" defer></script>
         <script src="js/scenes/InGame.js" defer></script>
         <script src="js/scenes/Win.js" defer></script>
@@ -30,9 +31,24 @@
         <script src="js/engine/Generator.js" defer></script>
         <script src="js/Init.js" defer></script>
         <!-- gamecode -->
+
+        <!-- PWA -->
+        <meta name="theme-color" content="#666666">
+        <link rel="manifest" href="/sudoku.manifest">
+        <!-- PWA -->
     </head>
     <body>
         <canvas class="background"></canvas>
         <main></main>
+        <noscript>
+            <p>
+                JavaScript szükséges az oldal használatához.
+                <a href="http://www.enable-javascript.com/hu/" target="_blank">Hogyan kell bekapcsolni</a>
+            </p>
+            <p>
+                JavaScript is required for this page.
+                <a href="http://www.enable-javascript.com/en/" target="_blank">How to enable JavaScript</a>
+            </p>
+        </noscript>
     </body>
 </html>

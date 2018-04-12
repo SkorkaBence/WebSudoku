@@ -1,5 +1,5 @@
 /*
-    scenes/InGame.js - Game initializer
+    scenes/InGame.js - InGame scene
     Copyright (c) 2018 Bence Skorka. All rights reserved.
     https://github.com/SkorkaBence/WebSudoku
 */
@@ -137,18 +137,29 @@ class InGame extends Scene {
                 let box = this.getCell(x, y);
                 box.style.width = cellsize + "px";
                 box.style.height = cellsize + "px";
-                box.style.fontSize = (cellsize * 0.6) + "px";
+                box.style.fontSize = (cellsize * 0.55) + "px";
                 tr.appendChild(box);
             }
             table.appendChild(tr);
         }
 
+        let possibilities = [];
         for (let i = 0; i <= this.game.size; i++) {
+            possibilities.push(i);
+        }
+
+        if (this.selectedCellX > -1 && this.selectedCellY > -1) {
+            possibilities = [0].concat(this.game.getPossibleValues(this.selectedCellX, this.selectedCellY));
+        }
+
+        for (let j = 0; j < possibilities.length; j++) {
+            let i = possibilities[j];
+
             let box = document.createElement("div");
             box.className = "option";
             box.style.width = optionsize + "px";
             box.style.height = optionsize + "px";
-            box.style.fontSize = (optionsize * 0.6) + "px";
+            box.style.fontSize = (optionsize * 0.55) + "px";
             if (i > 0) {
                 this.textures[i - 1].setTexture(box);
                 let sp = document.createElement("span");

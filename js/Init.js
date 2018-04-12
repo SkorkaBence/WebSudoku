@@ -7,6 +7,7 @@
 let currentScene = null;
 let renderBlock = false;
 let gamesave = null;
+let sw = null;
 
 window.addEventListener("load", function() {
     console.log("Initilaizing...");
@@ -17,6 +18,11 @@ window.addEventListener("load", function() {
 
     if (!CSS.supports("display", "grid")) {
         alert("Ez a föngésző nem támogat CSS GRID -et!");
+    }
+
+    if (window.location.origin !== "https://sudoku.benceskorka.com") {
+        alert("Az oldalnak a sudoku.benceskorka.com címen kell futnia!");
+        window.location.href = "https://sudoku.benceskorka.com";
     }
 
     gamesave = new Database();
@@ -34,6 +40,8 @@ window.addEventListener("load", function() {
     document.addEventListener("mousemove", function(e) {
         currentScene.onMouseMove(e);
     });
+
+    sw = new ServiceWorkerManager(swUpdate, "/sw.js", "BLIvselbW9kiccgIIX/UQtMvDNexQzBvUaA5Y9rHPRcxtwPOWjgf4oe0HF3Y+Wjw4Z81d7Z4x41ANzZFLsBe0Oo=");
 });
 
 window.addEventListener("resize", OnResized);
@@ -101,4 +109,8 @@ function LoadGameState() {
         }
     }
     return false;
+}
+
+function swUpdate(status) {
+    console.log("SW status", status);
 }

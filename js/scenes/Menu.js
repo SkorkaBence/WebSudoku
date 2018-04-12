@@ -1,5 +1,5 @@
 /*
-    scenes/Menu.js - Game initializer
+    scenes/Menu.js - Menu scene
     Copyright (c) 2018 Bence Skorka. All rights reserved.
     https://github.com/SkorkaBence/WebSudoku
 */

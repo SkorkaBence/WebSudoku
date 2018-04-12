@@ -1,5 +1,5 @@
 /*
-    endine/Generator.js - Game initializer
+    endine/Generator.js - Sudoku generator
     Copyright (c) 2018 Bence Skorka. All rights reserved.
     https://github.com/SkorkaBence/WebSudoku
 */

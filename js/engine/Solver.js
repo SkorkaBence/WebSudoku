@@ -1,5 +1,5 @@
 /*
-    endine/Solver.js - Game initializer
+    endine/Solver.js - Sudoku solver
     Copyright (c) 2018 Bence Skorka. All rights reserved.
     https://github.com/SkorkaBence/WebSudoku
 */
