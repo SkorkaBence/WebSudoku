@@ -63,7 +63,7 @@ main {
     max-width: 100%;
     transition: all 0.2s;
 }
-.menu .button {
+.menubutton {
     position: relative;
     display: block;
     background-color: lightblue;
@@ -84,7 +84,7 @@ main {
     text-decoration: none;
     outline: none;
 }
-.menu .button:hover {
+.menubutton:hover {
     background-color: rgb(132, 215, 243);
     box-shadow: 0 0 8px 0 rgba(0,0,0,.12),0 8px 8px 0 rgba(0,0,0,.24);
 }
@@ -103,6 +103,7 @@ h1 {
     font-weight: lighter;
     font-size: 63px;
     text-transform: uppercase;
+    text-align: center;
 }
 h2 {
     display: block;
@@ -111,6 +112,7 @@ h2 {
     font-family: inherit;
     font-weight: lighter;
     font-size: 42px;
+    text-align: center;
 }
 .gamearea {
     position: absolute;
@@ -131,7 +133,7 @@ h2 {
         "gamebody gamebody gamebody"
         "celloptions celloptions celloptions";
     grid-template-rows: 50px auto 150px;
-    grid-template-columns: 50px auto 60px;
+    grid-template-columns: 50px auto 50px;
 }
 .gamearea .gamebody {
     border-collapse: collapse;
@@ -217,17 +219,22 @@ h2 {
 }
 .gamearea .header-left {
     grid-area: header-left;
+    align-self: center;
+    justify-self: start;
 }
 .gamearea .header-center {
     grid-area: header-center;
     text-align: center;
     /*justify-self: center;*/
     align-self: center;
+    justify-self: center;
 }
 .gamearea .header-right {
     grid-area: header-right;
+    align-self: center;
+    justify-self: end;
 }
-.gamearea .headerbutton {
+.circlebutton {
     position: relative;
     width: calc(50px - 10px);
     height: calc(50px - 10px);
@@ -241,13 +248,13 @@ h2 {
     margin: 5px;
     background-color: transparent;
 }
-.gamearea .headerbutton i {
+.circlebutton i {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.gamearea .headerbutton:hover {
+.circlebutton:hover {
     background-color: rgba(255, 255, 255, 0.3);
 }
 .gamearea .timer {
@@ -328,5 +335,129 @@ h2 {
     100% {
         opacity: 0;
         transform: translate(-50%, -50%) scale(3);
+    }
+}
+.dialog-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 1000000;
+    display: none;
+    animation: dialog-blur 0.3s ease-out;
+}
+.dialog-container.visible {
+    display: block;
+}
+@keyframes dialog-blur {
+    0% {
+        background-color: rgba(0, 0, 0, 0.0);
+        /*backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);*/
+    }
+    100% {
+        background-color: rgba(0, 0, 0, 0.6);
+        /*backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);*/
+    }
+}
+.dialog-container .dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: auto;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 8px 0px, rgba(0, 0, 0, 0.24) 0px 8px 8px 0px;
+    padding: 12px;
+    transform: translate(-50%, -50%);
+    animation: dialog-popup 0.3s ease-out;
+
+    z-index: 100;
+}
+@keyframes dialog-popup {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 50%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+.dialog-container .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.customcheckbox {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+}
+.customcheckbox input {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+}
+.customcheckbox .checkbox {
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 3px solid gray;
+    border-radius: 4px;
+    vertical-align: middle;
+    box-shadow: 0 0 8px rgba(0,0,0,.12);
+    transition: all 0.4s;
+    background-color: white;
+}
+.customcheckbox:hover .checkbox {
+    box-shadow: 0 0 8px rgba(0,0,0,.12), 0 8px 8px rgba(0,0,0,.24)
+}
+.customcheckbox input:checked ~ .checkbox {
+    border-color: rgb(33, 150, 243);
+    background-color: rgb(33, 150, 243);
+}
+.customcheckbox .tick {
+    position: absolute;
+    left: 5px;
+    bottom: 3px;
+    background: none;
+    border: none;
+    border-bottom: 4px solid rgba(0,0,0,.16);
+    border-right: 4px solid rgba(0,0,0,.16);
+    width: 8px;
+    height: 14px;
+    transform: rotate(45deg);
+}
+.customcheckbox input:checked ~ .checkbox .tick {
+    border-bottom-color: white;
+    border-right-color: white;
+    animation: tick-check-animation 0.4s ease-in;
+}
+@keyframes tick-check-animation {
+    0% {
+        width: 0;
+        height: 0;
+        border-color: transparent;
+    }
+    50% {
+        width: 0;
+        height: 0;
+        border-color: white;
+    }
+    75% {
+        width: 6px;
+        height: 0;
+    }
+    100% {
+        width: 6px;
+        height: 12px;
     }
 }

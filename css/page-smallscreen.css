@@ -36,14 +36,27 @@ h2 {
     height: 100%;
 }
 
+.dialog-container .dialog {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+    animation: none;
+}
+.dialog-container .close {
+    color: black;
+    border-color: black;
+}
+
 @media screen and (orientation: landscape) {
     .gamearea {
         grid-template-areas:
-            "header-left gamebody none2"
+            "header-left gamebody header-right"
             "none1 gamebody celloptions"
-            "header-right gamebody header-center";
+            "none2 gamebody header-center";
         grid-template-columns: 50px auto 150px;
-        grid-template-rows: 50px auto 60px;
+        grid-template-rows: 50px auto 50px;
     }
     /*.gamearea .gamebody {
         height: 100%;

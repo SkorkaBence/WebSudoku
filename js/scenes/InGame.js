@@ -85,7 +85,7 @@ class InGame extends Scene {
             <div class="fullscreen background" id="sudokubg"></div>
             <div class="gamearea noselect">
                 <div class="header-left">
-                    <div class="headerbutton" id="exitbtn">
+                    <div class="circlebutton" id="exitbtn">
                         <i class="material-icons">exit_to_app</i>
                     </div>
                 </div>
@@ -93,8 +93,8 @@ class InGame extends Scene {
                     <div id="timer" class="timer"></div>
                 </div>
                 <div class="header-right">
-                    <div class="headerbutton" id="volumebtn">
-                        <i class="material-icons">error</i>
+                    <div class="circlebutton" id="settingsopener">
+                        <i class="material-icons">settings</i>
                     </div>
                 </div>
                 <div class="gamebody">
@@ -103,6 +103,34 @@ class InGame extends Scene {
                 <div class="celloptions"></div>
             </div>
             <div class="watermark-animation" id="sadface">&#128542;</div>
+            <div class="dialog-container noselect" id="settingsdialog">
+                <div class="circlebutton close">
+                    <i class="material-icons">close</i>
+                </div>
+                <div class="dialog">
+                    <h2>Beállítások</h2>
+                    <button class="menubutton" id="settings_volume">???</button>
+                    <button class="menubutton" id="settings_backgroundchange">Háttérkép megváltoztatása</button>
+                    <p>
+                        <label class="customcheckbox">
+                            <input type="checkbox" id="settings_checkwhenset">
+                            <span class="checkbox">
+                                <span class="tick"></span>
+                            </span>
+                            Lerakott elemek ellenőrzése
+                        </label>
+                    </p>
+                    <p>
+                        <label class="customcheckbox">
+                            <input type="checkbox" id="settings_helpicons">
+                            <span class="checkbox">
+                                <span class="tick"></span>
+                            </span>
+                            Csak az elfogadott lehetőségek jelenjenek meg
+                        </label>
+                    </p>
+                </div>
+            </div>
             <audio autoplay loop id="backgroundmusic">
                 <source src="audio/music.mp3" type="audio/mpeg">
             </auduo>
@@ -115,7 +143,13 @@ class InGame extends Scene {
             ClearGameState();
             ChangeScene(new Menu());
         });
-        $("#volumebtn").addEventListener("click", function() {
+        $("#settingsopener").addEventListener("click", function() {
+            $("#settingsdialog").classList.add("visible");
+        });
+        $("#settingsdialog .close").addEventListener("click", function() {
+            $("#settingsdialog").classList.remove("visible");
+        });
+        $("#settings_volume").addEventListener("click", function() {
             if (_this.audioPlayer.paused) {
                 _this.audioPlayer.play();
             } else {
@@ -123,11 +157,18 @@ class InGame extends Scene {
             }
             _this.render();
         });
+        $("#settings_backgroundchange").addEventListener("click", function() {
+            _this.changeBackground();
+        });
+        $("#settings_checkwhenset").addEventListener("change", function() {
+            _this.checkCellWhenChanged = $("#settings_checkwhenset").checked;
+        });
+        $("#settings_helpicons").addEventListener("change", function() {
+            _this.helpIcons = $("#settings_helpicons").checked;
+            _this.render();
+        });
 
-        //$("#sudokubg").style.backgroundImage = "url('img/backgrounds/" +  + "')";
-        let bgurl = "img/backgrounds/" + this.backgroundImages[Math.floor(Math.random() * this.backgroundImages.length)];
-        $("#sudokubg").style.backgroundImage = "url('" + bgurl + "')";
-
+        this.changeBackground();
         this.render();
         window.setTimeout(function() {
             _this.render();
@@ -137,6 +178,11 @@ class InGame extends Scene {
             _this.game.secondTick();
             _this.timerModule.innerText = SecondsToReadableTime(_this.game.timer);
         }, 1000);
+    }
+
+    changeBackground() {
+        let bgurl = "img/backgrounds/" + this.backgroundImages[Math.floor(Math.random() * this.backgroundImages.length)];
+        $("#sudokubg").style.backgroundImage = "url('" + bgurl + "')";
     }
 
     unload() {
@@ -219,9 +265,9 @@ class InGame extends Scene {
         }
 
         if (this.audioPlayer.paused) {
-            $("#volumebtn .material-icons").innerText = "volume_off";
+            $("#settings_volume").innerText = "Zene bekapcsolása";
         } else {
-            $("#volumebtn .material-icons").innerText = "volume_up";
+            $("#settings_volume").innerText = "Zene kikapcsolása";
         }
 
         /*this.backgroundCtx.fillStyle = "#FFFFFF";

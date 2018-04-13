@@ -20,33 +20,33 @@ class Menu extends Scene {
                 <div class="size-selection">
                     <h2>Játéktér mérete</h2>
 
-                    <button class="button sizebtn" data-sudoku-size="3">
+                    <button class="menubutton sizebtn" data-sudoku-size="3">
                         3x3
                         <span class="material-icons menuicon">navigate_next</span>
                     </button>
-                    <button class="button sizebtn" data-sudoku-size="4">
+                    <button class="menubutton sizebtn" data-sudoku-size="4">
                         4x4
                         <span class="material-icons menuicon">navigate_next</span>
                     </button>
-                    <button class="button sizebtn" data-sudoku-size="9">
+                    <button class="menubutton sizebtn" data-sudoku-size="9">
                         9x9 (Normál Sudoku)
                         <span class="material-icons menuicon">navigate_next</span>
                     </button>
                     <!--
-                    <button class="button sizebtn" data-sudoku-size="16">
+                    <button class="menubutton sizebtn" data-sudoku-size="16">
                         16x16 (EXTREMEEEEE)
                         <span class="material-icons menuicon">navigate_next</span>
                     </button>
                     -->
-                    <a href="https://benceskorka.com/" target="_blank" class="button">
+                    <a href="https://benceskorka.com/" target="_blank" class="menubutton">
                         Készítő
                     </a>
                 </div>
                 <div class="difficulty-selection">
                     <h2>Játék nehézsége</h2>
-                    <button class="button diffbtn" data-sudoku-diff="easy">Könnyű</button>
-                    <button class="button diffbtn" data-sudoku-diff="difficult">Nehéz</button>
-                    <button class="button diffbtn" data-sudoku-diff="max">Nagyon nagyon nehéz</button>
+                    <button class="menubutton diffbtn" data-sudoku-diff="easy">Könnyű</button>
+                    <button class="menubutton diffbtn" data-sudoku-diff="difficult">Nehéz</button>
+                    <button class="menubutton diffbtn" data-sudoku-diff="max">Nagyon nagyon nehéz</button>
                 </div>
             </div>
         </div>
