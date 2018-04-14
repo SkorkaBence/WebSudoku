@@ -278,10 +278,10 @@ class InGame extends Scene {
 
         SaveGameState(this.game.serialize());
 
-        /*this.backgroundCtx.fillStyle="#FFFFFF";
+        this.backgroundCtx.fillStyle="#000000";
         this.backgroundCtx.fillRect(0, 0, this.backgroundCanvas.width, this.backgroundCanvas.height); 
 
-        this.postRendering();*/
+        /*this.postRendering();*/
     }
 
     getCell(x, y) {
