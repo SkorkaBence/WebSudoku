@@ -20,8 +20,11 @@ window.addEventListener("load", function() {
         alert("Ez a föngésző nem támogat CSS GRID -et!");
     }
 
+    let DRM = true;
+
     if (window.location.origin == "https://sudoku.benceskorka.com") {
         sw = new ServiceWorkerManager(swUpdate, "/sw.js", "BLIvselbW9kiccgIIX/UQtMvDNexQzBvUaA5Y9rHPRcxtwPOWjgf4oe0HF3Y+Wjw4Z81d7Z4x41ANzZFLsBe0Oo=");
+        DRM = false;
     }
 
     gamesave = new Database();
@@ -32,7 +35,7 @@ window.addEventListener("load", function() {
     if (game !== false) {
         ChangeScene(new InGame(game));
     } else {
-        ChangeScene(new Menu());
+        ChangeScene(new Menu(DRM));
     }
 
     let cv = $("canvas");

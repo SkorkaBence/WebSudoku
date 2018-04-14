@@ -6,10 +6,11 @@
 
 class Menu extends Scene {
 
-    constructor() {
+    constructor(drm) {
         super();
         this.mouseX = 0;
         this.mouseY = 0;
+        this.showDRM = typeof(drm) == "boolean" ? drm : false;
     }
 
     load() {
@@ -103,7 +104,7 @@ class Menu extends Scene {
             }, false);
         }
 
-        if (window.location.origin !== "https://sudoku.benceskorka.com") {
+        if (this.showDRM) {
             $("#drm-dialog").classList.add("visible");
         }
         $("#drm-dialog .close").addEventListener("click", function() {
