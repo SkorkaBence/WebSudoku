@@ -239,8 +239,10 @@ class InGame extends Scene {
 
         if (this.helpIcons) {
             possibilities = this.game.getPossibleValuesBoolArray(this.selectedCellX, this.selectedCellY);
-        } else {
+        } else if (this.selectedCellX >= 0 && this.selectedCellY >= 0) {
             possibilities = generateArray(this.game.size, true);
+        } else {
+            possibilities = generateArray(this.game.size, false);
         }
 
         for (let i = 1; i <= this.game.size; ++i) {
