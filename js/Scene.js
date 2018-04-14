@@ -22,7 +22,7 @@ class Scene {
     }
 
     postRendering() {
-        this.drawDebugInfo();
+        //this.drawDebugInfo();
 
         const t = this;
         this.fps_count++;
