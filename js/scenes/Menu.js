@@ -59,6 +59,18 @@ class Menu extends Scene {
                 </div>
             </div>
         </div>
+        <div class="dialog-container noselect" id="drm-dialog">
+            <div class="circlebutton close">
+                <i class="material-icons">close</i>
+            </div>
+            <div class="dialog">
+                <h2>"Próbaverzió"</h2>
+                <p>
+                    Ennek az oldalnak a <a href="https://sudoku.benceskorka.com/">sudoku.benceskorka.com</a> címen kellene futnia. Át szeretnél térni arra az oldalra?
+                </p>
+                <a class="menubutton" href="https://sudoku.benceskorka.com/">Igen</a>
+            </div>
+        </div>
         `;
 
         this.resetMenu();
@@ -78,6 +90,13 @@ class Menu extends Scene {
                 t.selectDifficulty(event);
             }, false);
         }
+
+        if (window.location.origin !== "https://sudoku.benceskorka.com") {
+            $("#drm-dialog").classList.add("visible");
+        }
+        $("#drm-dialog .close").addEventListener("click", function() {
+            $("#drm-dialog").classList.remove("visible");
+        });
     }
 
     unload() {

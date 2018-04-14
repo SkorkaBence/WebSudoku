@@ -20,10 +20,11 @@ window.addEventListener("load", function() {
         alert("Ez a föngésző nem támogat CSS GRID -et!");
     }
 
-    if (window.location.origin !== "https://sudoku.benceskorka.com") {
-        alert("Az oldalnak a sudoku.benceskorka.com címen kell futnia!");
-        window.location.href = "https://sudoku.benceskorka.com";
-    }
+    /*if (window.location.origin !== "https://sudoku.benceskorka.com") {
+        if (this.confirm("Ennek a játéknak a sudoku.benceskorka.com címen kellene futnia!\n\nSzeretnél átmenni sudoku.benceskorka.com oldalra?")) {
+            window.location.href = "https://sudoku.benceskorka.com";
+        }
+    }*/
 
     gamesave = new Database();
 
