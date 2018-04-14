@@ -16,7 +16,7 @@ window.addEventListener("load", function() {
         alert("Ez a föngésző nem támogat FETCH -et!");
     }
 
-    if (!CSS.supports("display", "grid")) {
+    if (CSS.supports("display", "grid") !== true) {
         alert("Ez a föngésző nem támogat CSS GRID -et!");
     }
 

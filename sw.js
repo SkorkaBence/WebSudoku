@@ -5,6 +5,7 @@
 */
 
 const CACHE = 'sudoku-v1';
+const DEV_MODE = false;
 
 function SWLog(txt) {
     console.log("[Sudoku Service Worker] " + txt);
@@ -19,6 +20,10 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
+    if (DEV_MODE) {
+        return;
+    }
+
     event.respondWith(fromCache(event.request).catch(fromServer(event.request)));
 
     if (navigator.onLine) {

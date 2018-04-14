@@ -44,9 +44,18 @@ class Menu extends Scene {
                 </div>
                 <div class="difficulty-selection">
                     <h2>Játék nehézsége</h2>
-                    <button class="menubutton diffbtn" data-sudoku-diff="easy">Könnyű</button>
-                    <button class="menubutton diffbtn" data-sudoku-diff="difficult">Nehéz</button>
-                    <button class="menubutton diffbtn" data-sudoku-diff="max">Nagyon nagyon nehéz</button>
+                    <button class="menubutton diffbtn" data-sudoku-diff="easy">
+                        Könnyű
+                        <span class="menuicon">&#128526;</span>
+                    </button>
+                    <button class="menubutton diffbtn" data-sudoku-diff="difficult">
+                        Nehéz
+                        <span class="menuicon">&#128578;</span>
+                    </button>
+                    <button class="menubutton diffbtn" data-sudoku-diff="max">
+                        Nagyon nagyon nehéz
+                        <span class="menuicon">&#128543;</span>
+                    </button>
                 </div>
             </div>
         </div>

@@ -169,9 +169,15 @@ class Win extends Scene {
         this.main.innerHTML = `
             <div class="winner noselect">
                 Gratulálok!
-                <button>Új játék</button>
             </div>
+            <audio autoplay>
+                <source src="audio/win.mp3" type="audio/mpeg">
+            </auduo>
         `;
+
+        window.setTimeout(function() {
+            ChangeScene(new Menu());
+        }, 8000);
     }
 
     unload() {

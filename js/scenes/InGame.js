@@ -13,6 +13,7 @@ class CellTexture {
         this.selectedCellX = -1;
         this.selectedCellY = -1;
         this.audioPlayer = null;
+        this.clickEffect = null;
         this.secondTimer = null;
 
         /* HELPS */
@@ -134,10 +135,14 @@ class InGame extends Scene {
             <audio autoplay loop id="backgroundmusic">
                 <source src="audio/music.mp3" type="audio/mpeg">
             </auduo>
+            <audio id="clickeffect">
+                <source src="audio/click.mp3" type="audio/mpeg">
+            </auduo>
         `;
 
         this.audioPlayer = $("#backgroundmusic");
         this.timerModule = $("#timer");
+        this.clickEffect = $("#clickeffect");
 
         $("#exitbtn").addEventListener("click", function() {
             ClearGameState();
@@ -348,6 +353,8 @@ class InGame extends Scene {
     changeCell(id) {
         //console.log(id);
 
+        this.clickEffect.play();
+
         if (this.checkCellWhenChanged) {
             const possibilities = this.game.getPossibleValuesBoolArray(this.selectedCellX, this.selectedCellY);
             if (!possibilities[id - 1]) {
@@ -380,7 +387,7 @@ class InGame extends Scene {
         face.classList.add("visible");
         window.setTimeout(function() {
             face.classList.remove("visible");
-        }, 800);
+        }, 1000);
     }
 
 }
