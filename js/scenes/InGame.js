@@ -10,16 +10,6 @@ class CellTexture {
 
         this.text = "";
         this.background = "";
-        this.selectedCellX = -1;
-        this.selectedCellY = -1;
-        this.audioPlayer = null;
-        this.clickEffect = null;
-        this.secondTimer = null;
-
-        /* HELPS */
-        this.helpIcons = false;
-        this.checkCellWhenChanged = false;
-        /* HELPS */
 
         if (type == "color") {
             this.background = data;
@@ -43,6 +33,17 @@ class InGame extends Scene {
         super();
 
         this.game = game;
+
+        this.selectedCellX = -1;
+        this.selectedCellY = -1;
+        this.audioPlayer = null;
+        this.clickEffect = null;
+        this.secondTimer = null;
+
+        /* HELPS */
+        this.helpIcons = false;
+        this.checkCellWhenChanged = true;
+        /* HELPS */
 
         this.backgroundImages = [
             "01_gettyimages-450207051_super_resized.jpg",
@@ -114,7 +115,7 @@ class InGame extends Scene {
                     <button class="menubutton" id="settings_backgroundchange">Háttérkép megváltoztatása</button>
                     <p>
                         <label class="customcheckbox">
-                            <input type="checkbox" id="settings_checkwhenset">
+                            <input type="checkbox" id="settings_checkwhenset" ${this.checkCellWhenChanged ? "checked" : ""}>
                             <span class="checkbox">
                                 <span class="tick"></span>
                             </span>
@@ -123,7 +124,7 @@ class InGame extends Scene {
                     </p>
                     <p>
                         <label class="customcheckbox">
-                            <input type="checkbox" id="settings_helpicons">
+                            <input type="checkbox" id="settings_helpicons" ${this.helpIcons ? "checked" : ""}>
                             <span class="checkbox">
                                 <span class="tick"></span>
                             </span>

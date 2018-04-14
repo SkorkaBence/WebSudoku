@@ -15,6 +15,9 @@ function SWLog(txt) {
 
 self.addEventListener('install', function(event) {
     SWLog("Service worker installed");
+    if (DEV_MODE) {
+        SWLog("Service worker is in DEV MODE so no sw cache will be used.");
+    }
 
     event.waitUntil(
         precache().then(function() {
