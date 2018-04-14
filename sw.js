@@ -7,12 +7,20 @@
 const CACHE = 'sudoku-v1';
 const DEV_MODE = false;
 
+const preCacheList = [];
+
 function SWLog(txt) {
     console.log("[Sudoku Service Worker] " + txt);
 }
 
 self.addEventListener('install', function(event) {
     SWLog("Service worker installed");
+
+    event.waitUntil(
+        precache().then(function() {
+            return self.skipWaiting();
+        })
+    );
 });
 
 self.addEventListener('activate', function(event) {
@@ -30,6 +38,12 @@ self.addEventListener('fetch', function(event) {
         event.waitUntil(update(event.request));
     }
 });
+
+function precache() {
+    return caches.open(CACHE).then(function (cache) {
+        return cache.addAll(preCacheList);
+    });
+}
 
 function fromCache(request) {
     return caches.open(CACHE).then(function (cache) {
