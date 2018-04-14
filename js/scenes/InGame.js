@@ -65,6 +65,8 @@ class InGame extends Scene {
             "17_gettyimages-92415747_high_resized.jpg",
             "18_gettyimages-672313436_super_resized.jpg"
         ];
+        this.backgroundPrefix = "https://csfcloud.blob.core.windows.net/resources/sudoku/";
+
         this.textures = [];
 
         //const bgs = shuffle(["#F44336", "#9C27B0", "#3F51B5", "#2196F3", "#4CAF50", "#FF9800", "#795548", "#009688", "#CDDC39", "#E91E63"]);
@@ -193,7 +195,7 @@ class InGame extends Scene {
     }
 
     changeBackground() {
-        let bgurl = "img/backgrounds/" + this.backgroundImages[Math.floor(Math.random() * this.backgroundImages.length)];
+        let bgurl = this.backgroundPrefix + this.backgroundImages[Math.floor(Math.random() * this.backgroundImages.length)];
         $("#sudokubg").style.backgroundImage = "url('" + bgurl + "')";
     }
 
