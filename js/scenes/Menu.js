@@ -66,7 +66,8 @@ class Menu extends Scene {
             <div class="dialog">
                 <h2>"Próbaverzió"</h2>
                 <p>
-                    Ennek az oldalnak a <a href="https://sudoku.benceskorka.com/">sudoku.benceskorka.com</a> címen kellene futnia. Át szeretnél térni arra az oldalra?
+                    Ennek az oldalnak a <a href="https://sudoku.benceskorka.com/">sudoku.benceskorka.com</a> címen kellene futnia.<br>
+                    Át szeretnél térni arra az oldalra?
                 </p>
                 <a class="menubutton" href="https://sudoku.benceskorka.com/">Igen</a>
             </div>
