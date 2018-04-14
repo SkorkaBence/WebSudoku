@@ -219,7 +219,7 @@ class InGame extends Scene {
         const usableHeight = table.parentNode.clientHeight - 4;
 
         const cellsize = Math.min(usableWidth / this.game.size, usableHeight / this.game.size);
-        const optionsize = Math.max(Math.min((cellsize * this.game.size) / (this.game.size/* + 1*/) - 10, options.clientHeight - 20), 40);
+        const optionsize = Math.max(Math.min(cellsize - 10, 140), 35);
 
         table.innerHTML = "";
         for (let y = 0; y < this.game.size; ++y) {
