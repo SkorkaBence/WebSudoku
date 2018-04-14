@@ -57,6 +57,9 @@ class Menu extends Scene {
                         <span class="menuicon">&#128543;</span>
                     </button>
                 </div>
+                <div class="loading">
+                    <h2>Kérlek várj...</h2>
+                </div>
             </div>
         </div>
         <div class="dialog-container noselect" id="drm-dialog">
@@ -144,6 +147,7 @@ class Menu extends Scene {
     resetMenu() {
         $(".size-selection").style.display = "";
         $(".difficulty-selection").style.display = "none";
+        $(".loading").style.display = "none";
     }
 
     selectGameSize(event) {
@@ -187,7 +191,14 @@ class Menu extends Scene {
             emptyCells = (this.selectedSize * this.selectedSize);
         }
 
-        ChangeScene(new InGame(GenerateGame(this.selectedSize, emptyCells)));
+        $(".difficulty-selection").style.display = "none";
+        $(".loading").style.display = "";
+
+        const _this = this;
+
+        window.setTimeout(function() {
+            ChangeScene(new InGame(GenerateGame(_this.selectedSize, emptyCells)));
+        }, 300);
     }
 
 }
