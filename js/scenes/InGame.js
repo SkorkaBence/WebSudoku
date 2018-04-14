@@ -155,6 +155,12 @@ class InGame extends Scene {
         $("#settingsdialog .close").addEventListener("click", function() {
             $("#settingsdialog").classList.remove("visible");
         });
+        $("#settingsdialog").addEventListener("click", function(event) {
+            if (event.target.id == "settingsdialog") {
+                $("#settingsdialog").classList.remove("visible");
+            }
+        });
+
         $("#settings_volume").addEventListener("click", function() {
             if (_this.audioPlayer.paused) {
                 _this.audioPlayer.play();
