@@ -395,6 +395,9 @@ h2 {
         transform: translate(-50%, -50%);
     }
 }
+.dialog-container .dialog p {
+    text-align: center;
+}
 .dialog-container .close {
     position: absolute;
     top: 0;

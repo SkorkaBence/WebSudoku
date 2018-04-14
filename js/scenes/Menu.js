@@ -69,8 +69,16 @@ class Menu extends Scene {
             <div class="dialog">
                 <h2>"Próbaverzió"</h2>
                 <p>
-                    Ennek az oldalnak a <a href="https://sudoku.benceskorka.com/">sudoku.benceskorka.com</a> címen kellene futnia.<br>
-                    Át szeretnél térni arra az oldalra?
+                    Ennek az oldalnak a <a href="https://sudoku.benceskorka.com/">sudoku.benceskorka.com</a> címen kellene futnia.
+                </p>
+                <p>
+                    Ha nem vált át a hivatalos oldalra, akkor ServiceWorker nélkül fog futni a játék,<br>
+                    így nem lesz elérhető OFFLINE módban,<br>
+                    illetve nem fog Progressive Web Appként működni,<br>
+                    így nem adható hozzá a kezdőképernyőhöz.
+                </p>
+                <p>
+                    Szeretne átmenni a <a href="https://sudoku.benceskorka.com/">sudoku.benceskorka.com</a> oldalra?
                 </p>
                 <a class="menubutton" href="https://sudoku.benceskorka.com/">Igen</a>
             </div>
