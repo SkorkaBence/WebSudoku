@@ -205,9 +205,14 @@ class Menu extends Scene {
 
         const _this = this;
 
-        window.setTimeout(function() {
-            ChangeScene(new InGame(GenerateGame(_this.selectedSize, emptyCells)));
-        }, 300);
+        new Promise(function(resolve) {
+            setTimeout(function() {
+                const game = GenerateGame(_this.selectedSize, emptyCells);
+                resolve(game);
+            }, 300);
+        }).then(function(game) {
+            ChangeScene(new InGame(game));
+        });
     }
 
 }
