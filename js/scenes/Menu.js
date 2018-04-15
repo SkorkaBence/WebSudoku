@@ -33,12 +33,6 @@ class Menu extends Scene {
                         9x9 (Normál Sudoku)
                         <span class="material-icons menuicon">navigate_next</span>
                     </button>
-                    <!--
-                    <button class="menubutton sizebtn" data-sudoku-size="16">
-                        16x16 (EXTREMEEEEE)
-                        <span class="material-icons menuicon">navigate_next</span>
-                    </button>
-                    -->
                     <a href="https://benceskorka.com/" target="_blank" class="menubutton">
                         Készítő
                     </a>
