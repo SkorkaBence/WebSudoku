@@ -35,7 +35,7 @@ class Sudoku {
 
     constructor(size) {
         if (typeof(size) != "number") {
-            //console.error("First parameter must be a number");
+            console.error("size must be a number");
             return;
         }
 
@@ -46,6 +46,7 @@ class Sudoku {
             this.subCellSize = Math.round(Math.sqrt(size));
         } else {
             console.error("Invalid size: ", size);
+            return;
         }
 
         this.size = size;
@@ -111,6 +112,7 @@ class Sudoku {
     isValidCell(x, y) {
         if (typeof(x) != "number" || typeof(y) != "number") {
             console.error("Numbers required");
+            return false;
         }
 
         return (x >= 0 && y >= 0 && x < this.size && y < this.size);
