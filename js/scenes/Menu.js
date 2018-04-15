@@ -80,6 +80,7 @@ class Menu extends Scene {
                     Szeretne átmenni a <a href="https://sudoku.benceskorka.com/">sudoku.benceskorka.com</a> oldalra?
                 </p>
                 <a class="menubutton" href="https://sudoku.benceskorka.com/">Igen</a>
+                <a class="notpreferedmenubutton closelink">Nem</a>
             </div>
         </div>
         `;
@@ -106,6 +107,9 @@ class Menu extends Scene {
             $("#drm-dialog").classList.add("visible");
         }
         $("#drm-dialog .close").addEventListener("click", function() {
+            $("#drm-dialog").classList.remove("visible");
+        });
+        $("#drm-dialog .closelink").addEventListener("click", function() {
             $("#drm-dialog").classList.remove("visible");
         });
     }
