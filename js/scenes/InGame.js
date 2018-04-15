@@ -152,6 +152,7 @@ class InGame extends Scene {
             ChangeScene(new Menu());
         });
         $("#settingsopener").addEventListener("click", function() {
+            _this.render();
             $("#settingsdialog").classList.add("visible");
         });
         $("#settingsdialog .close").addEventListener("click", function() {
