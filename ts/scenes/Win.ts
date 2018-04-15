@@ -132,7 +132,7 @@ class Particle {
     private trailLength : number = PARTICLE_TRAIL_LENGTH;
     private transparency : number = PARTICLE_TRANSPARENCY;
 
-    constructor(x, y, hue) {
+    constructor(x : number, y : number, hue : number) {
         this.x = x;
         this.y = y;
 

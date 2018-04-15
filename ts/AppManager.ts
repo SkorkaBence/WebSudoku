@@ -7,7 +7,7 @@
 class ServiceWorkerManager {
 
     private updatecallback : Function;
-    private sw : ServiceWorkerRegistration;
+    private sw : ServiceWorkerRegistration|null = null;
 
     constructor(updatecallback : Function, worker : string) {
         this.updatecallback = updatecallback;
