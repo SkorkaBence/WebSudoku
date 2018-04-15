@@ -33,8 +33,12 @@ class Menu extends Scene {
                         9x9 (Normál Sudoku)
                         <span class="material-icons menuicon">navigate_next</span>
                     </button>
+                    <hr>
                     <a href="https://benceskorka.com/" target="_blank" class="menubutton">
                         Készítő
+                    </a>
+                    <a href="https://github.com/SkorkaBence/WebSudoku/issues" target="_blank" class="menubutton">
+                        Hiba bejelentés
                     </a>
                 </div>
                 <div class="difficulty-selection">

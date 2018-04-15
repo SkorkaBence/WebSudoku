@@ -119,6 +119,9 @@ h2 {
     font-size: 42px;
     text-align: center;
 }
+hr {
+    margin: 18px;
+}
 .gamearea {
     position: absolute;
     top: 50px;
