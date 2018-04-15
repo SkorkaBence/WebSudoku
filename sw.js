@@ -7,6 +7,8 @@
 const CACHE = 'sudoku-v1';
 const DEV_MODE = false;
 
+self.importScripts('js/DataLists.js');
+
 const preCacheList = [
     "audio/click.mp3",
     "audio/music.mp3",
