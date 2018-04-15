@@ -1,5 +1,5 @@
 /*
-    functions.js - Util functions
+    functions.ts - Util functions
     Copyright (c) 2018 Bence Skorka. All rights reserved.
     https://github.com/SkorkaBence/WebSudoku
 */

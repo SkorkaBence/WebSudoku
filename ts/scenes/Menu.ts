@@ -1,5 +1,5 @@
 /*
-    scenes/Menu.js - Menu scene
+    scenes/Menu.ts - Menu scene
     Copyright (c) 2018 Bence Skorka. All rights reserved.
     https://github.com/SkorkaBence/WebSudoku
 */

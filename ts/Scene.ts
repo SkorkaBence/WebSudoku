@@ -1,5 +1,5 @@
 /*
-    Scene.js - Abstract Scene class
+    Scene.ts - Abstract Scene class
     Copyright (c) 2018 Bence Skorka. All rights reserved.
     https://github.com/SkorkaBence/WebSudoku
 */

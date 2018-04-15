@@ -1,3 +1,9 @@
+/*
+    DataLists.ts - Resource lists
+    Copyright (c) 2018 Bence Skorka. All rights reserved.
+    https://github.com/SkorkaBence/WebSudoku
+*/
+
 const BackgroundImageList = [
     "01_gettyimages-450207051_super_resized.jpg",
     "02_gettyimages-544346474_super_resized.jpg",

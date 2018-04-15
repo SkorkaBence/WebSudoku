@@ -1,5 +1,5 @@
 /*
-    Database.js - LocalStorage wrapper
+    Database.ts - LocalStorage wrapper
     Copyright (c) 2018 Bence Skorka. All rights reserved.
     https://github.com/SkorkaBence/WebSudoku
 */

@@ -1,5 +1,5 @@
 /*
-    scenes/Win.js - Winning scene
+    scenes/Win.ts - Winning scene
     Copyright (c) 2018 Bence Skorka. All rights reserved.
     https://github.com/SkorkaBence/WebSudoku
 

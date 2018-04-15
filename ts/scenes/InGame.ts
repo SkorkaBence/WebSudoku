@@ -1,5 +1,5 @@
 /*
-    scenes/InGame.js - InGame scene
+    scenes/InGame.ts - InGame scene
     Copyright (c) 2018 Bence Skorka. All rights reserved.
     https://github.com/SkorkaBence/WebSudoku
 */
