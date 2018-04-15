@@ -1,6 +1,6 @@
 /*
     AppManager.js - PWA management for ServiceWorker and PushNotification registration
-    Copyright (c) 2018 Bence Skorka and CSFCloud. All rights reserved.
+    Copyright (c) 2018 Bence Skorka. All rights reserved.
     https://github.com/SkorkaBence/WebSudoku
 */
 
