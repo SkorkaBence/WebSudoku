@@ -4,6 +4,12 @@
     https://github.com/SkorkaBence/WebSudoku
 */
 
+interface ServiceWorkerManagerDataPush {
+    type: string;
+    status : string;
+    data? : any;
+}
+
 class ServiceWorkerManager {
 
     private updatecallback : Function;
@@ -50,7 +56,7 @@ class ServiceWorkerManager {
         }
     }
 
-    pushupdate(data : any) : void {
+    pushupdate(data : ServiceWorkerManagerDataPush) : void {
         if (typeof(this.updatecallback) == "function") {
             try {
                 this.updatecallback(data);

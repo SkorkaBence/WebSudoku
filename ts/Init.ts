@@ -113,6 +113,6 @@ function LoadGameState() : Sudoku|null {
     return null;
 }
 
-function swUpdate(status : any) : void {
+function swUpdate(status : ServiceWorkerManagerDataPush) : void {
     console.log("SW status", status);
 }
