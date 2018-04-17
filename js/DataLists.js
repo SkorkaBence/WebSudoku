@@ -1,10 +1,10 @@
-"use strict";
 /*
-    DataLists.ts - Resource lists
+    DataLists.js - Resource lists
     Copyright (c) 2018 Bence Skorka. All rights reserved.
     https://github.com/SkorkaBence/WebSudoku
 */
-var BackgroundImageList = [
+
+const BackgroundImageList = [
     "01_gettyimages-450207051_super_resized.jpg",
     "02_gettyimages-544346474_super_resized.jpg",
     "03_gettyimages-642010642_high_resized.jpg",
@@ -24,4 +24,4 @@ var BackgroundImageList = [
     "17_gettyimages-92415747_high_resized.jpg",
     "18_gettyimages-672313436_super_resized.jpg"
 ];
-var BackgroundImagePrefix = "https://csfcloud.blob.core.windows.net/resources/sudoku/";
+const BackgroundImagePrefix = "https://csfcloud.blob.core.windows.net/resources/sudoku/";
