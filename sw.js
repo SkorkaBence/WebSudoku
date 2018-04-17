@@ -52,6 +52,7 @@ self.addEventListener('fetch', function(event) {
 
         for (let i = 0; i < preCacheList.length; ++i) {
             if (event.request.url.indexOf(preCacheList[i]) > -1) {
+                SWLog(event.request.url + " found in " + preCacheList[i]);
                 needsUpdate = false;
                 break;
             }
