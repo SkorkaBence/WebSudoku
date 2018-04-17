@@ -70,7 +70,7 @@ class InGame extends Scene {
         this.textures = [];
 
         //const bgs = shuffle(["#F44336", "#9C27B0", "#3F51B5", "#2196F3", "#4CAF50", "#FF9800", "#795548", "#009688", "#CDDC39", "#E91E63"]);
-        const bgs = shuffle(["red", "blue", "green", "yellow"]);
+        const bgs = shuffle(["red", "blue", "lime", "yellow"]);
         if (this.game.size <= bgs.length) {
             for (let i = 0; i < this.game.size; i++) {
                 this.textures.push(new CellTexture("color", bgs[i % bgs.length]));
