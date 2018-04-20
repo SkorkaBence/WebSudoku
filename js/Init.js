@@ -23,7 +23,7 @@ window.addEventListener("load", function() {
     let DRM = true;
 
     if (window.location.origin == "https://sudoku.benceskorka.com") {
-        sw = new ServiceWorkerManager(swUpdate, "/sw.js", "BLIvselbW9kiccgIIX/UQtMvDNexQzBvUaA5Y9rHPRcxtwPOWjgf4oe0HF3Y+Wjw4Z81d7Z4x41ANzZFLsBe0Oo=");
+        sw = new ServiceWorkerManager(swUpdate, "/sw.js");
         DRM = false;
     }
 

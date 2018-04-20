@@ -61,7 +61,7 @@ class InGame extends Scene {
     }
 
     load() {
-        const _this = this;
+        const __this = this;
 
         this.main.innerHTML = `
             <div class="fullscreen background" id="sudokubg"></div>
@@ -130,7 +130,7 @@ class InGame extends Scene {
             ChangeScene(new Menu());
         });
         $("#settingsopener").addEventListener("click", function() {
-            _this.render();
+            __this.render();
             $("#settingsdialog").classList.add("visible");
         });
         $("#settingsdialog .close").addEventListener("click", function() {
@@ -143,33 +143,33 @@ class InGame extends Scene {
         });
 
         $("#settings_volume").addEventListener("click", function() {
-            if (_this.audioPlayer.paused) {
-                _this.audioPlayer.play();
+            if (__this.audioPlayer.paused) {
+                __this.audioPlayer.play();
             } else {
-                _this.audioPlayer.pause();
+                __this.audioPlayer.pause();
             }
-            _this.render();
+            __this.render();
         });
         $("#settings_backgroundchange").addEventListener("click", function() {
-            _this.changeBackground();
+            __this.changeBackground();
         });
         $("#settings_checkwhenset").addEventListener("change", function() {
-            _this.checkCellWhenChanged = $("#settings_checkwhenset").checked;
+            __this.checkCellWhenChanged = $("#settings_checkwhenset").checked;
         });
         $("#settings_helpicons").addEventListener("change", function() {
-            _this.helpIcons = $("#settings_helpicons").checked;
-            _this.render();
+            __this.helpIcons = $("#settings_helpicons").checked;
+            __this.render();
         });
 
         this.changeBackground();
         this.render();
         window.setTimeout(function() {
-            _this.render();
+            __this.render();
         }, 100);
 
         this.secondTimer = window.setInterval(function() {
-            _this.game.secondTick();
-            _this.timerModule.innerText = SecondsToReadableTime(_this.game.timer);
+            __this.game.secondTick();
+            __this.timerModule.innerText = SecondsToReadableTime(__this.game.timer);
         }, 1000);
     }
 
@@ -186,9 +186,9 @@ class InGame extends Scene {
     resized() {
         this.render();
 
-        const _this = this;
+        const __this = this;
         window.setTimeout(function() {
-            _this.render();
+            __this.render();
         }, 100);
     }
 

@@ -248,7 +248,7 @@ class Sudoku {
     }
 
     setNextPossibleValue(x, y) {
-        const possibilities = getPossibleValues(x, y);
+        const possibilities = this.getPossibleValues(x, y);
         if (possibilities.length == 0) {
             return 0;
         }
