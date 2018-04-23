@@ -1,5 +1,5 @@
 /*
-    endine/Sudoku.ts - Sudoku game core
+    engine/Sudoku.ts - Sudoku game core
     Copyright (c) 2018 Bence Skorka. All rights reserved.
     https://github.com/SkorkaBence/WebSudoku
 */

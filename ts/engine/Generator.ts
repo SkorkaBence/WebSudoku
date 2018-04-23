@@ -1,5 +1,5 @@
 /*
-    endine/Generator.ts - Sudoku generator
+    engine/Generator.ts - Sudoku generator
     Copyright (c) 2018 Bence Skorka. All rights reserved.
     https://github.com/SkorkaBence/WebSudoku
 */
