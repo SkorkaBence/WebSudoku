@@ -6,7 +6,6 @@
 
 let currentScene : Scene|null = null;
 let renderBlock : boolean = false;
-let gamesave : any = null;
 let sw : ServiceWorkerManager|null = null;
 
 window.addEventListener("load", function() {
@@ -20,20 +19,18 @@ window.addEventListener("load", function() {
         alert("Ez a föngésző nem támogat CSS GRID -et!");
     }
 
-    let DRM = true;
+    let DRM = false;
 
     if (window.location.origin == "https://sudoku.benceskorka.com") {
         sw = new ServiceWorkerManager(swUpdate, "/sw.js");
         DRM = false;
     }
 
-    gamesave = new Database();
-
     OnResized();
 
     let game = LoadGameState();
     if (game !== null) {
-        ChangeScene(new InGame(game));
+        ChangeScene(new InGame(game as SaveState));
     } else {
         ChangeScene(new Menu(DRM));
     }
@@ -91,24 +88,17 @@ function ChangeScene(newScene : Scene) : void {
 }
 
 function ClearGameState() : void {
-    gamesave.remove("gamestate");
+    Database.remove("gamestate");
 }
 
-function SaveGameState(serializedGameState : any) : void {
-    gamesave.set("gamestate", serializedGameState);
+function SaveGameState(gamestate : SaveState) : void {
+    Database.set("gamestate", gamestate);
 }
 
-function LoadGameState() : Sudoku|null {
-    const state = gamesave.get("gamestate");
+function LoadGameState() : SaveState|null {
+    const state = Database.get("gamestate");
     if (typeof(state) != "undefined" && state != null) {
-        try {
-            let s = new Sudoku(0);
-            s.deserialize(state);
-            return s;
-        } catch (e) {
-            console.warn("Error while trying to deserialize saved state:", e);
-            return null;
-        }
+        return (state as SaveState);
     }
     return null;
 }

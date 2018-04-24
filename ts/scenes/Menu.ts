@@ -223,8 +223,15 @@ class Menu extends Scene {
         const __this = this;
 
         setTimeout(function() {
-            const game = GenerateGame((__this.selectedSize as number), emptyCells);
-            ChangeScene(new InGame(game));
+            const size = (__this.selectedSize as number);
+            const game = GenerateGame(size, emptyCells);
+            let texturepackname = "numbers";
+            if (size <= 4) {
+                texturepackname = "colors";
+            }
+            TextureParser.Parse(texturepackname).then(function(pack) {
+                ChangeScene(new InGame((game as Sudoku), pack));
+            });
         }, 300);
     }
 

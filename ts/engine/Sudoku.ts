@@ -21,15 +21,14 @@ class SudokuCell {
         return c;
     }
 
-    public serialize() : string {
-        return JSON.stringify({
+    public serialize() : any {
+        return {
             value: this.value,
             fixed: this.fixed
-        });
+        };
     }
 
-    public deserialize(raw : string) : void {
-        const data = JSON.parse(raw);
+    public deserialize(data : any) : void {
         this.value = data.value;
         this.fixed = data.fixed;
     }
@@ -39,7 +38,6 @@ class Sudoku {
 
     public size : number = 0;
     public arena : SudokuCell[][] = [];
-    public timer : number = 0;
     public subCells : boolean = false;
     public subCellSize : number = 0;
 
@@ -56,7 +54,6 @@ class Sudoku {
 
         this.size = size;
         this.arena = [];
-        this.timer = 0;
 
         for (let x = 0; x < size; ++x) {
             this.arena[x] = [];
@@ -64,10 +61,6 @@ class Sudoku {
                 this.arena[x][y] = new SudokuCell();
             }
         }
-    }
-
-    public secondTick() : void {
-        ++this.timer;
     }
 
     public clone() : Sudoku {
@@ -80,7 +73,7 @@ class Sudoku {
         return res;
     }
 
-    public serialize() : string {
+    public serialize() : any {
         let arena_data : string[][] = [];
         for (let x = 0; x < this.size; ++x) {
             arena_data[x] = [];
@@ -88,21 +81,18 @@ class Sudoku {
                 arena_data[x][y] = this.arena[x][y].serialize();
             }
         }
-        return JSON.stringify({
+        return {
             size: this.size,
             subCells: this.subCells,
             subCellSize: this.subCellSize,
-            timer: this.timer,
             arena: arena_data
-        });
+        };
     }
 
-    public deserialize(raw : string) : void {
-        const data = JSON.parse(raw);
+    public deserialize(data : any) : void {
         this.size = data.size;
         this.subCells = data.subCells;
         this.subCellSize = data.subCellSize;
-        this.timer = data.timer;
         this.arena = [];
         for (let x = 0; x < this.size; ++x) {
             this.arena[x] = [];

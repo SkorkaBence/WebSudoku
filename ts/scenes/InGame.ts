@@ -4,34 +4,6 @@
     https://github.com/SkorkaBence/WebSudoku
 */
 
-class CellTexture {
-
-    private type : string;
-    private text : string;
-    private background : string;
-
-    constructor(type : string, data : string|number) {
-        this.type = type;
-
-        this.text = "";
-        this.background = "";
-
-        if (type == "color") {
-            this.background = (data as string);
-        } else if (type == "number") {
-            this.text = (data as string);
-        }
-    }
-
-    setTexture(obj : HTMLElement) : void {
-        if (this.type == "color") {
-            obj.style.backgroundColor = this.background;
-        } else if (this.type == "number") {
-            obj.innerHTML = this.text;
-        }
-    }
-}
-
 class InGame extends Scene {
 
     private game : Sudoku;
@@ -41,29 +13,40 @@ class InGame extends Scene {
     private audioPlayer : HTMLAudioElement|null = null;;
     private clickEffect : HTMLAudioElement|null = null;;
     private secondTimer : number|null = null;
+
     private timerModule : HTMLElement|null = null;
+    private time : number = 0;
 
     private helpIcons : boolean = false;
     private checkCellWhenChanged : boolean = false;
 
+    private texturePack : TexturePack;
     private textures : CellTexture[] = [];
 
-    constructor(game : Sudoku) {
+    public constructor(game : Sudoku, textures : TexturePack);
+    public constructor(game : SaveState);
+
+    public constructor(game : Sudoku|SaveState, textures? : TexturePack) {
         super();
 
-        this.game = game;
-
-        //const bgs = shuffle(["#F44336", "#9C27B0", "#3F51B5", "#2196F3", "#4CAF50", "#FF9800", "#795548", "#009688", "#CDDC39", "#E91E63"]);
-        const bgs = shuffle(["red", "blue", "lime", "yellow"]);
-        if (this.game.size <= bgs.length) {
-            for (let i = 0; i < this.game.size; i++) {
-                this.textures.push(new CellTexture("color", bgs[i % bgs.length]));
+        if (game instanceof Sudoku) {
+            this.game = game;
+            if (!textures) {
+                throw new Error("Texture pack needed");
             }
+            if (textures.GetMaxCellNumber() < this.game.size) {
+                throw new Error("Inalid texture pack");
+            }
+            this.texturePack = textures;
         } else {
-            for (let i = 0; i < this.game.size; i++) {
-                this.textures.push(new CellTexture("number", i + 1));
-            }
+            this.game = new Sudoku(0);
+            this.game.deserialize(game.arena);
+            this.time = game.time;
+            this.texturePack = new TexturePack(game.texturePack);
+            this.helpIcons = game.helpIcons;
+            this.checkCellWhenChanged = game.checkCellWhenChanged;
         }
+        this.textures = this.texturePack.GenerateTextures(this.game.size);
     }
 
     public load() : void {
@@ -179,9 +162,9 @@ class InGame extends Scene {
         }, 100);
 
         this.secondTimer = window.setInterval(function() {
-            __this.game.secondTick();
+            ++__this.time;
             if (__this.timerModule != null) {
-                __this.timerModule.innerText = SecondsToReadableTime(__this.game.timer);
+                __this.timerModule.innerText = SecondsToReadableTime(__this.time);
             }
         }, 1000);
     }
@@ -256,13 +239,9 @@ class InGame extends Scene {
             box.style.fontSize = (optionsize * 0.55) + "px";
             if (i > 0) {
                 this.textures[i - 1].setTexture(box);
-                let sp = document.createElement("span");
-                sp.innerHTML = box.innerHTML;
-                box.innerHTML = "";
                 if (!possibilities[i - 1]) {
                     box.classList.add("disabled");
                 }
-                box.appendChild(sp);
                 box.id = "cell-option-" + i;
             } else {
                 box.innerHTML = "<span class='fa fa-eraser'></span>";
@@ -283,7 +262,13 @@ class InGame extends Scene {
             }
         }
 
-        SaveGameState(this.game.serialize());
+        SaveGameState({
+            arena: this.game.serialize(),
+            time: this.time,
+            texturePack: this.texturePack.ExportData(),
+            helpIcons: this.helpIcons,
+            checkCellWhenChanged: this.checkCellWhenChanged
+        });
 
         this.backgroundCtx.fillStyle="#000000";
         this.backgroundCtx.fillRect(0, 0, this.backgroundCanvas.width, this.backgroundCanvas.height); 

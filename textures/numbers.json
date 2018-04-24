@@ -1,0 +1,12 @@
+{
+    "name" : "Számcsomag",
+    "description" : "Számokkal jelölt cellák",
+    "creator" : "Skorka Bence",
+    "icon" : "numbers.png",
+    "randomize" : false,
+    "generator" : {
+        "content": {
+            "text": "@generated{cell_id}"
+        }
+    }
+}

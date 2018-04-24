@@ -84,5 +84,17 @@ function SecondsToReadableTime(sec : number) : string {
         sec = Math.floor(sec / divide);
     }
 
-    return negative ? "-" : "" + strs.join(":");
+    return (negative ? "-" : "") + strs.join(":");
+}
+
+function DeepCloneObject(data : any) : any {
+    let clone : any = {};
+    for (let k in data) {
+        if (typeof(data[k]) == "object") {
+            clone[k] = DeepCloneObject(data[k]);
+        } else if (typeof(data[k]) != "undefined") {
+            clone[k] = data[k]
+        }
+    }
+    return clone;
 }
