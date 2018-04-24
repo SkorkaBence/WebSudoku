@@ -14,7 +14,7 @@ const preCacheList = [
     "audio/music.mp3",
     "audio/win.mp3",
     "textures/colors.json",
-    "textures/numbers.json",
+    "textures/numbers.json"
 ];
 
 for (let i = 0; i < BackgroundImageList.length; ++i) {
@@ -22,7 +22,11 @@ for (let i = 0; i < BackgroundImageList.length; ++i) {
 }
 
 function SWLog(txt) {
-    console.log("[Sudoku Service Worker] " + txt);
+    if (typeof(txt == "string")) {
+        console.log("[Sudoku Service Worker] " + txt);
+    } else {
+        console.log("[Sudoku Service Worker]", txt);
+    }
 }
 
 self.addEventListener('install', function(event) {
@@ -47,13 +51,17 @@ self.addEventListener('fetch', function(event) {
         return;
     }
 
-    event.respondWith(fromCache(event.request).catch(fromServer(event.request)));
+    event.respondWith(fromCache(event.request).catch(function(err) {
+        SWLog(err);
+        return fromServer(event.request);
+    }));
 
     if (navigator.onLine) {
         let needsUpdate = true;
 
         for (let i = 0; i < preCacheList.length; ++i) {
             if (event.request.url.indexOf(preCacheList[i]) > -1) {
+                SWLog(event.request.url + " found in " + preCacheList[i]);
                 needsUpdate = false;
                 break;
             }
@@ -74,7 +82,12 @@ function precache() {
 function fromCache(request) {
     return caches.open(CACHE).then(function (cache) {
         return cache.match(request).then(function (matching) {
-            return matching || fromServer(request);
+            if (matching) {
+                return matching;
+            } else {
+                SWLog("Cant find in cache: " + request.url);
+                return fromServer(request);
+            }
         });
     });
 }
