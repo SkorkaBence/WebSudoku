@@ -19,7 +19,7 @@ window.addEventListener("load", function() {
         alert("Ez a föngésző nem támogat CSS GRID -et!");
     }
 
-    let DRM = false;
+    let DRM = true;
 
     if (window.location.origin == "https://sudoku.benceskorka.com") {
         sw = new ServiceWorkerManager(swUpdate, "/sw.js");
