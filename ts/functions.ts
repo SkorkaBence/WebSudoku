@@ -98,3 +98,19 @@ function DeepCloneObject(data : any) : any {
     }
     return clone;
 }
+
+function ClearGameState() : void {
+    Database.remove("gamestate");
+}
+
+function SaveGameState(gamestate : SaveState) : void {
+    Database.set("gamestate", gamestate);
+}
+
+function LoadGameState() : SaveState|null {
+    const state = Database.get("gamestate");
+    if (typeof(state) != "undefined" && state != null) {
+        return (state as SaveState);
+    }
+    return null;
+}

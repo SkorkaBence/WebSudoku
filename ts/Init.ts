@@ -34,64 +34,6 @@ window.addEventListener("load", function() {
     }
 });
 
-/*function OnResized() : void {
-    let canvas = ($("canvas") as HTMLCanvasElement);
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-
-    if (!renderBlock && typeof(currentScene) == "object" && currentScene != null && typeof(currentScene.resized) == "function") {
-        currentScene.resized();
-    }
-}*/
-
-/*function NextFrame() : void {
-    if (renderBlock) {
-        return;
-    }
-    if (typeof(currentScene) == "object" && currentScene != null && typeof(currentScene.render) == "function") {
-        if (!currentScene.requireFrameRendering()) {
-            return;
-        }
-        currentScene.render();
-    }
-    requestAnimationFrame(function() {
-        NextFrame();
-    });
-}*/
-
-/*function ChangeScene(newScene : Scene) : void {
-    renderBlock = true;
-
-    if (typeof(currentScene) == "object" && currentScene != null && typeof(currentScene.unload) == "function") {
-        currentScene.unload();
-    }
-
-    currentScene = newScene;
-
-    if (typeof(currentScene) == "object" && currentScene != null && typeof(currentScene.load) == "function") {
-        currentScene.load();
-    }
-
-    renderBlock = false;
-    NextFrame();
-}*/
-
-function ClearGameState() : void {
-    Database.remove("gamestate");
-}
-
-function SaveGameState(gamestate : SaveState) : void {
-    Database.set("gamestate", gamestate);
-}
-
-function LoadGameState() : SaveState|null {
-    const state = Database.get("gamestate");
-    if (typeof(state) != "undefined" && state != null) {
-        return (state as SaveState);
-    }
-    return null;
-}
-
 function swUpdate(status : ServiceWorkerManagerDataPush) : void {
     console.log("SW status", status);
 }
