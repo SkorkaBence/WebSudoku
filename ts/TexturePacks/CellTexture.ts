@@ -1,5 +1,5 @@
 /*
-    scenes/CellTexture.ts - TexturePack creator
+    TexturePacks/CellTexture.ts - TexturePack creator
     Copyright (c) 2018 Bence Skorka. All rights reserved.
     https://github.com/SkorkaBence/WebSudoku
 */

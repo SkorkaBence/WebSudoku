@@ -1,5 +1,5 @@
 /*
-    scenes/TexturePack.ts - TexturePack creator
+    TexturePacks/TexturePack.ts - TexturePack creator
     Copyright (c) 2018 Bence Skorka. All rights reserved.
     https://github.com/SkorkaBence/WebSudoku
 */
