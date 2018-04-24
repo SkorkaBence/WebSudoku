@@ -1,4 +1,3 @@
-<<<<<<< HEAD:ts/engine/Sudoku.ts
 /*
     engine/Sudoku.ts - Sudoku game core
     Copyright (c) 2018 Bence Skorka. All rights reserved.

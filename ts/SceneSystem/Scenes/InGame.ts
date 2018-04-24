@@ -1,4 +1,3 @@
-<<<<<<< HEAD:ts/SceneSystem/Scenes/InGame.ts
 /*
     SceneSystem/Scenes/InGame.ts - InGame scene
     Copyright (c) 2018 Bence Skorka. All rights reserved.
