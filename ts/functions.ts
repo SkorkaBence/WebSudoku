@@ -5,7 +5,11 @@
 */
 
 function $(e : string) : HTMLElement {
-    return (document.querySelector(e) as HTMLElement);
+    const obj = document.querySelector(e);
+    if (!obj) {
+        throw new Error("Invalid selector: " + e);
+    }
+    return (obj as HTMLElement);
 }
 
 function $$(e : string) : NodeListOf<HTMLElement> {
@@ -60,7 +64,10 @@ function calculateDistance(aX : number, aY : number, bX : number, bY : number) :
 }
 
 function pad(num : number, size : number) : string {
-    var s = "000000000" + num;
+    let s = num.toString();
+    do {
+        s = "000000000" + s;
+    } while (s.length < size);
     return s.substr(s.length-size);
 }
 
