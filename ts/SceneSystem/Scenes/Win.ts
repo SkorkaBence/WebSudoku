@@ -1,5 +1,5 @@
 /*
-    scenes/Win.ts - Winning scene
+    SceneSystem/Scenes/Win.ts - Winning scene
     Copyright (c) 2018 Bence Skorka. All rights reserved.
     https://github.com/SkorkaBence/WebSudoku
 
@@ -192,7 +192,7 @@ class Win extends Scene {
         `;
 
         window.setTimeout(function() {
-            ChangeScene(new Menu(false));
+            SceneManager.ChangeScene(new Menu(false));
         }, 8000);
     }
 
@@ -243,7 +243,7 @@ class Win extends Scene {
         this.postRendering();
     }
 
-    public onMouseMove(event : any) : void {}
+    public onMouseMove(event : MouseEvent) : void {}
     public resized() : void {}
 
 }

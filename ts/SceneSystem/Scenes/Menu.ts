@@ -1,5 +1,5 @@
 /*
-    scenes/Menu.ts - Menu scene
+    SceneSystem/Scenes/Menu.ts - Menu scene
     Copyright (c) 2018 Bence Skorka. All rights reserved.
     https://github.com/SkorkaBence/WebSudoku
 */
@@ -161,7 +161,7 @@ class Menu extends Scene {
             this.height + mouseMoveEffect);
     }
 
-    public onMouseMove(event : any) : void {
+    public onMouseMove(event : MouseEvent) : void {
         this.mouseX = event.clientX;
         this.mouseY = event.clientY;
     }
@@ -230,7 +230,7 @@ class Menu extends Scene {
                 texturepackname = "colors";
             }
             TextureParser.Parse(texturepackname).then(function(pack) {
-                ChangeScene(new InGame((game as Sudoku), pack));
+                SceneManager.ChangeScene(new InGame((game as Sudoku), pack));
             });
         }, 300);
     }

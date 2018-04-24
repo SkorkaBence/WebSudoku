@@ -1,5 +1,5 @@
 /*
-    scenes/InGame.ts - InGame scene
+    SceneSystem/Scenes/InGame.ts - InGame scene
     Copyright (c) 2018 Bence Skorka. All rights reserved.
     https://github.com/SkorkaBence/WebSudoku
 */
@@ -116,7 +116,7 @@ class InGame extends Scene {
 
         $("#exitbtn").addEventListener("click", function() {
             ClearGameState();
-            ChangeScene(new Menu(false));
+            SceneManager.ChangeScene(new Menu(false));
         });
         $("#settingsopener").addEventListener("click", function() {
             __this.render();
@@ -365,7 +365,7 @@ class InGame extends Scene {
 
         } else if (res == "correct") {
             ClearGameState();
-            ChangeScene(new Win());
+            SceneManager.ChangeScene(new Win());
         }
     }
 
@@ -377,6 +377,6 @@ class InGame extends Scene {
         }, 1000);
     }
 
-    public onMouseMove(event : any) : void {}
+    public onMouseMove(event : MouseEvent) : void {}
 
 }

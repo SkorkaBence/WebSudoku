@@ -4,8 +4,6 @@
     https://github.com/SkorkaBence/WebSudoku
 */
 
-let currentScene : Scene|null = null;
-let renderBlock : boolean = false;
 let sw : ServiceWorkerManager|null = null;
 
 window.addEventListener("load", function() {
@@ -26,26 +24,17 @@ window.addEventListener("load", function() {
         DRM = false;
     }
 
-    OnResized();
+    SceneManager.Init();
 
     let game = LoadGameState();
     if (game !== null) {
-        ChangeScene(new InGame(game as SaveState));
+        SceneManager.ChangeScene(new InGame(game as SaveState));
     } else {
-        ChangeScene(new Menu(DRM));
+        SceneManager.ChangeScene(new Menu(DRM));
     }
-
-    let cv = $("canvas");
-    document.addEventListener("mousemove", function(e) {
-        if (currentScene != null) {
-            currentScene.onMouseMove(e);
-        }
-    });
 });
 
-window.addEventListener("resize", OnResized);
-
-function OnResized() : void {
+/*function OnResized() : void {
     let canvas = ($("canvas") as HTMLCanvasElement);
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
@@ -53,9 +42,9 @@ function OnResized() : void {
     if (!renderBlock && typeof(currentScene) == "object" && currentScene != null && typeof(currentScene.resized) == "function") {
         currentScene.resized();
     }
-}
+}*/
 
-function NextFrame() : void {
+/*function NextFrame() : void {
     if (renderBlock) {
         return;
     }
@@ -68,9 +57,9 @@ function NextFrame() : void {
     requestAnimationFrame(function() {
         NextFrame();
     });
-}
+}*/
 
-function ChangeScene(newScene : Scene) : void {
+/*function ChangeScene(newScene : Scene) : void {
     renderBlock = true;
 
     if (typeof(currentScene) == "object" && currentScene != null && typeof(currentScene.unload) == "function") {
@@ -85,7 +74,7 @@ function ChangeScene(newScene : Scene) : void {
 
     renderBlock = false;
     NextFrame();
-}
+}*/
 
 function ClearGameState() : void {
     Database.remove("gamestate");

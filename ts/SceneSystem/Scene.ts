@@ -1,5 +1,5 @@
 /*
-    Scene.ts - Abstract Scene class
+    SceneSystem/Scene.ts - Abstract Scene class
     Copyright (c) 2018 Bence Skorka. All rights reserved.
     https://github.com/SkorkaBence/WebSudoku
 */
@@ -26,7 +26,7 @@ abstract class Scene {
     public abstract render() : void;
 
     protected postRendering() : void {
-        //this.drawDebugInfo();
+        this.drawDebugInfo();
 
         const t = this;
         this.fps_count++;
@@ -49,7 +49,7 @@ abstract class Scene {
         this.backgroundCtx.fillText(this.real_fps + " FPS", 0, 20);
     }
 
-    public abstract onMouseMove(event : any) : void;
+    public abstract onMouseMove(event : MouseEvent) : void;
     public abstract load() : void;
     public abstract unload() : void;
     public abstract resized() : void;
