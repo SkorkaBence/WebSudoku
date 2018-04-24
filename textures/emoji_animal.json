@@ -1,0 +1,51 @@
+{
+    "name" : "Emoji állatok",
+    "description" : "Emoji állatok",
+    "creator" : "Skorka Bence",
+    "icon" : "colors.png",
+    "randomize" : true,
+    "cells" : [
+        {
+            "background": {
+                "color" : "lightblue",
+                "image" : "https://csfcloud.blob.core.windows.net/resources/EmojiOne/128/1f436.png",
+                "image_size" : "contain"
+            }
+        },
+        {
+            "background": {
+                "color" : "lightblue",
+                "image" : "https://csfcloud.blob.core.windows.net/resources/EmojiOne/128/1f431.png",
+                "image_size" : "contain"
+            }
+        },
+        {
+            "background": {
+                "color" : "lightblue",
+                "image" : "https://csfcloud.blob.core.windows.net/resources/EmojiOne/128/1f427.png",
+                "image_size" : "contain"
+            }
+        },
+        {
+            "background": {
+                "color" : "lightblue",
+                "image" : "https://csfcloud.blob.core.windows.net/resources/EmojiOne/128/1f98a.png",
+                "image_size" : "contain"
+            }
+        },
+        {
+            "background": {
+                "color" : "lightblue",
+                "image" : "https://csfcloud.blob.core.windows.net/resources/EmojiOne/128/1f40e.png",
+                "image_size" : "contain"
+            }
+        },
+        {
+            "background": {
+                "color" : "lightblue",
+                "image" : "https://csfcloud.blob.core.windows.net/resources/EmojiOne/128/1f42d.png",
+                "image_size" : "contain"
+            }
+        }
+    ]
+}

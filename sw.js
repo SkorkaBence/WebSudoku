@@ -12,7 +12,9 @@ self.importScripts('js/DataLists.js');
 const preCacheList = [
     "audio/click.mp3",
     "audio/music.mp3",
-    "audio/win.mp3"
+    "audio/win.mp3",
+    "textures/colors.json",
+    "textures/numbers.json"
 ];
 
 for (let i = 0; i < BackgroundImageList.length; ++i) {

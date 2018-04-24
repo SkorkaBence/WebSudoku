@@ -170,12 +170,14 @@ hr {
 }
 
 .gamearea td {
+    position: relative;
     border: 1px solid gray;
     text-align: center;
     vertical-align: middle;
     font-size: 32px;
     background-color: white;
     transition: all 0.2s;
+    overflow: hidden;
 }
 .gamearea td.fixed-cell {
     cursor: auto;
@@ -222,7 +224,7 @@ hr {
     color: black;
     vertical-align: middle;
 }
-.gamearea .option span {
+.gamearea .option span, .gamearea td span {
     position: absolute;
     top: 50%;
     left: 50%;

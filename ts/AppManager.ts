@@ -1,45 +1,52 @@
 /*
-    AppManager.js - PWA management for ServiceWorker and PushNotification registration
+    AppManager.ts - PWA management for ServiceWorker and PushNotification registration
     Copyright (c) 2018 Bence Skorka. All rights reserved.
     https://github.com/SkorkaBence/WebSudoku
 */
 
+interface ServiceWorkerManagerDataPush {
+    type: string;
+    status : string;
+    data? : any;
+}
+
 class ServiceWorkerManager {
 
-    constructor(updatecallback, worker) {
-        this.updatecallback = updatecallback;
-        this.push = null;
-        this.sw = null;
+    private updatecallback : Function;
+    private sw : ServiceWorkerRegistration|null = null;
 
-        var t = this;
+    constructor(updatecallback : Function, worker : string) {
+        this.updatecallback = updatecallback;
+
+        var _this = this;
 
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register(worker).then(function(reg) {
-                t.pushupdate({
+                _this.pushupdate({
                     type: "sw_register",
                     status: "registered"
                 });
-                t.sw = reg;
+                _this.sw = reg;
             }, function(err) {
                 console.log('ServiceWorker registration failed: ', err);
-                t.pushupdate({
+                _this.pushupdate({
                     type: "sw_register",
                     status: "failed"
                 });
             });
     
-            window.addEventListener('beforeinstallprompt', function(e) {
-                e.userChoice.then(function(choiceResult) {
+            window.addEventListener('beforeinstallprompt', function(e : any) {
+                e.userChoice.then(function(choiceResult : any) {
                     console.log(choiceResult.outcome);
                     if(choiceResult.outcome == 'dismissed') {
                         console.log('User cancelled home screen install');
-                        t.pushupdate({
+                        _this.pushupdate({
                             type: "home_icon",
                             status: "cancelled"
                         });
                     } else {
                         console.log('User added to home screen');
-                        t.pushupdate({
+                        _this.pushupdate({
                             type: "home_icon",
                             status: "added"
                         });
@@ -49,7 +56,7 @@ class ServiceWorkerManager {
         }
     }
 
-    pushupdate(data) {
+    pushupdate(data : ServiceWorkerManagerDataPush) : void {
         if (typeof(this.updatecallback) == "function") {
             try {
                 this.updatecallback(data);
