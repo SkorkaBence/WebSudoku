@@ -12,7 +12,7 @@ function $(e : string) : HTMLElement {
     return (obj as HTMLElement);
 }
 
-function $$(e : string) : NodeListOf<HTMLElement> {
+function $$(e : string) : NodeListOf<Element> {
     return document.querySelectorAll(e);
 }
 

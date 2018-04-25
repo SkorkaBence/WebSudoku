@@ -9,6 +9,8 @@ CLONE_FILES_TARGET = $(patsubst %,$(TARGET)/%.js,$(CLONE_FILES))
 
 all : $(OUT_FILE) $(CLONE_FILES_TARGET)
 
+.PHONY: all
+
 $(OUT_FILE) :
 	tsc -p $(TS_CONFIG)
 
