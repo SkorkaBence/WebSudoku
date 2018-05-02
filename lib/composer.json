@@ -1,0 +1,5 @@
+{
+    "require": {
+        "csfcloud/utils": "dev-master@dev"
+    }
+}

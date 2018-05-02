@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="hu">
+    <head>
+        <title>Sudoku</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="icon" href="img/icon_256.png">
+        <meta name="description" content="Játsz sudokut!">
+
+        <!-- dependencies -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:100,100i,300,300i,400,400i,500,500i,700,700i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Sigmar+One|Shadows+Into+Light" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/1.2.0/trianglify.min.js" defer></script>
+        <script src="https://csfcloud.blob.core.windows.net/packages/CSFCloud.JS.SDK/latest/packageloader.js" defer></script>
+        <!-- dependencies -->
+
+        <!-- style -->
+        <link href="css/page.css" rel="stylesheet">
+        <link href="css/page-smallscreen.css" rel="stylesheet" media="screen and (max-width: 600px), screen and (max-height: 600px)">
+        <link href="css/loader.css" rel="stylesheet">
+        <!-- style -->
+
+        <!-- gamecode -->
+        <script src="js/game.js" defer></script>
+        <!-- gamecode -->
+
+        <!-- PWA -->
+        <meta name="theme-color" content="#666666">
+        <link rel="manifest" href="/sudoku.manifest">
+        <!-- PWA -->
+    </head>
+    <body>
+        <canvas class="background"></canvas>
+        <main></main>
+        <div class="loader">
+            <div class="loadercenter">
+                <div class="spin"></div>
+            </div>
+        </div>
+        <noscript>
+            <p lang="hu">
+                JavaScript szükséges az oldal használatához.
+                <a href="http://www.enable-javascript.com/hu/" target="_blank">Hogyan kell bekapcsolni</a>
+            </p>
+            <p lang="en">
+                JavaScript is required for this page.
+                <a href="http://www.enable-javascript.com/en/" target="_blank">How to enable JavaScript</a>
+            </p>
+        </noscript>
+    </body>
+</html>

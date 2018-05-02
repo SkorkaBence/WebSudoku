@@ -1,0 +1,482 @@
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    overscroll-behavior: contain;
+}
+canvas, main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+canvas {
+    z-index: 0;
+}
+main {
+    z-index: 10;
+}
+a {
+    color: blue;
+}
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+  }
+.vertical-center {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-width: 100%;
+}
+.horizontal-center {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    max-width: 100%;
+}
+.menu {
+    width: 400px;
+    text-align: center;
+    padding: 20px;
+    border: none;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 8px 0px, rgba(0, 0, 0, 0.24) 0px 8px 8px 0px;
+    text-align: center;
+    max-width: 100%;
+    max-width: 100%;
+    transition: all 0.2s;
+}
+.menubutton {
+    position: relative;
+    display: block;
+    background-color: lightblue;
+    border: none;
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 8px;
+    transition: all 0.2s;
+    margin: 8px;
+    padding: 12px 22px;
+    cursor: pointer;
+    color: black;
+    text-transform: uppercase;
+    font-family: inherit;
+    font-size: 16px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
+    outline: none;
+    text-align: center;
+}
+.menubutton:hover {
+    background-color: rgb(132, 215, 243);
+    box-shadow: 0 0 8px 0 rgba(0,0,0,.12),0 8px 8px 0 rgba(0,0,0,.24);
+}
+.notpreferedmenubutton {
+    display: block;
+    font-size: 11px;
+    text-align: center;
+    cursor: pointer;
+}
+.menu .menuicon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translate(0, -50%);
+    font-size: inherit;
+    display: block;
+}
+h1 {
+    display: block;
+    margin: 0;
+    padding: 0;
+    font-family: inherit;
+    font-weight: lighter;
+    font-size: 63px;
+    text-transform: uppercase;
+    text-align: center;
+}
+h2 {
+    display: block;
+    margin: 0;
+    padding: 0;
+    font-family: inherit;
+    font-weight: lighter;
+    font-size: 42px;
+    text-align: center;
+}
+hr {
+    margin: 18px;
+}
+.gamearea {
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    width: calc(100% - 200px);
+    height: calc(100% - 100px);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    /*background-color: white;*/
+    /*box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 8px 0px, rgba(0, 0, 0, 0.24) 0px 8px 8px 0px;*/
+    /*transition: all 0.2s;*/
+
+    display: grid;
+    grid-template-areas:
+        "header-left header-center header-right"
+        "gamebody gamebody gamebody"
+        "celloptions celloptions celloptions";
+    grid-template-rows: 50px auto 150px;
+    grid-template-columns: 50px auto 50px;
+}
+.gamearea .gamebody {
+    border-collapse: collapse;
+    padding: 0;
+    margin: 0;
+    grid-area: gamebody;
+    overflow: hidden;
+}
+.gamearea .celloptions {
+    overflow: auto;
+    text-align: center;
+    /*padding: 20px;*/
+    grid-area: celloptions;
+    align-self: center;
+}
+.gamearea table {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+}
+
+.gamearea td {
+    position: relative;
+    border: 1px solid gray;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 32px;
+    background-color: white;
+    transition: all 0.2s;
+    overflow: hidden;
+}
+.gamearea td.fixed-cell {
+    cursor: auto;
+    color: black;
+}
+.gamearea td.changeable-cell {
+    cursor: pointer;
+    color: rgb(67, 67, 190);
+    box-shadow: inset 0 0 8px 4px rgba(255, 255, 255, 0.6);
+    font-family: 'Shadows Into Light', cursive;
+}
+.gamearea td.changeable-cell:hover {
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.6);
+}
+.gamearea td.selected-cell {
+    box-shadow: inset 0 0 8px 5px rgba(0, 0, 0, 0.6);
+}
+.gamearea td.section-border-left {
+    border-left-color: black;
+    border-left-width: 3px;
+}
+.gamearea td.section-border-top {
+    border-top-color: black;
+    border-top-width: 3px;
+}
+.gamearea td.section-border-right {
+    border-right-color: black;
+    border-right-width: 3px;
+}
+.gamearea td.section-border-bottom {
+    border-bottom-color: black;
+    border-bottom-width: 3px;
+}
+.gamearea .option {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 5px;
+    border: 1px solid gray;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    vertical-align: middle;
+}
+.gamearea .option span, .gamearea td span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.gamearea .option.disabled {
+    opacity: 0.3;
+}
+.gamearea .header-left {
+    grid-area: header-left;
+    align-self: center;
+    justify-self: start;
+}
+.gamearea .header-center {
+    grid-area: header-center;
+    text-align: center;
+    /*justify-self: center;*/
+    align-self: center;
+    justify-self: center;
+}
+.gamearea .header-right {
+    grid-area: header-right;
+    align-self: center;
+    justify-self: end;
+}
+.circlebutton {
+    position: relative;
+    width: calc(50px - 10px);
+    height: calc(50px - 10px);
+    display: inline-block;
+    z-index: 200;
+    border-radius: 100%;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: 4px solid white;
+    color: white;
+    margin: 5px;
+    background-color: transparent;
+}
+.circlebutton i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.circlebutton:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+.gamearea .timer {
+    font-family: 'Roboto Mono', monospace;
+    color: white;
+    font-size: 24px;
+}
+.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.fullscreen.background {
+    top: -10px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 0;
+    filter: blur(3px) brightness(0.5);
+}
+
+.winner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 50px;
+    font-family: 'Sigmar One', cursive;
+    color: lightblue;
+    transform: translate(-50%, -50%);
+
+    animation: winner-text 0.6s ease-out;
+    transform: scale(1.5), rotate(15deg);
+}
+@keyframes winner-text {
+    0% {
+        transform: translate(-50%, -50%) scale(0.4) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.5) rotate(15deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+.watermark-animation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: auto;
+    width: auto;
+    transform: translate(-50%, -50%);
+    display: none;
+    font-size: 90px;
+    z-index: 1000;
+}
+.watermark-animation.visible {
+    display: block;
+    opacity: 0;
+
+    animation: watermark-show 0.8s ease-in;
+}
+@keyframes watermark-show {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(3);
+    }
+}
+.dialog-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    /*backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);*/
+    z-index: 1000000;
+    display: none;
+    animation: dialog-blur 0.3s ease-out;
+}
+.dialog-container.visible {
+    display: block;
+}
+@keyframes dialog-blur {
+    0% {
+        background-color: rgba(0, 0, 0, 0.0);
+        /*backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);*/
+    }
+    100% {
+        background-color: rgba(0, 0, 0, 0.6);
+        /*backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);*/
+    }
+}
+.dialog-container .dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: auto;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 8px 0px, rgba(0, 0, 0, 0.24) 0px 8px 8px 0px;
+    padding: 12px;
+    transform: translate(-50%, -50%);
+    animation: dialog-popup 0.3s ease-out;
+
+    z-index: 100;
+}
+@keyframes dialog-popup {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 50%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+.dialog-container .dialog p {
+    text-align: center;
+}
+.dialog-container .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.customcheckbox {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+}
+.customcheckbox input {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+}
+.customcheckbox .checkbox {
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 3px solid gray;
+    border-radius: 4px;
+    vertical-align: middle;
+    box-shadow: 0 0 8px rgba(0,0,0,.12);
+    transition: all 0.4s;
+    background-color: white;
+}
+.customcheckbox:hover .checkbox {
+    box-shadow: 0 0 8px rgba(0,0,0,.12), 0 8px 8px rgba(0,0,0,.24)
+}
+.customcheckbox input:checked ~ .checkbox {
+    border-color: rgb(33, 150, 243);
+    background-color: rgb(33, 150, 243);
+}
+.customcheckbox .tick {
+    position: absolute;
+    left: 5px;
+    bottom: 3px;
+    background: none;
+    border: none;
+    border-bottom: 4px solid rgba(0,0,0,.16);
+    border-right: 4px solid rgba(0,0,0,.16);
+    width: 8px;
+    height: 14px;
+    transform: rotate(45deg);
+}
+.customcheckbox input:checked ~ .checkbox .tick {
+    border-bottom-color: white;
+    border-right-color: white;
+    animation: tick-check-animation 0.4s ease-in;
+}
+@keyframes tick-check-animation {
+    0% {
+        width: 0;
+        height: 0;
+        border-color: transparent;
+    }
+    50% {
+        width: 0;
+        height: 0;
+        border-color: white;
+    }
+    75% {
+        width: 6px;
+        height: 0;
+    }
+    100% {
+        width: 6px;
+        height: 12px;
+    }
+}

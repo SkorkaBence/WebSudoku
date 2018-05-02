@@ -1,0 +1,73 @@
+.store {
+    display: grid;
+    grid-template:
+        'user logo money'
+        'body body body';
+    grid-template-rows: 80px auto;
+    grid-template-columns: 80px auto 80px;
+}
+.store .account {
+    grid-area: user;
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.12);
+    align-self: center;
+    justify-self: center;
+}
+.store .money {
+    grid-area: money;
+    justify-self: center;
+    align-self: center;
+}
+.store .storebody {
+    grid-area: body;
+    text-align: center;
+}
+.store .itemcnt {
+    display: inline-block;
+}
+.store .item {
+    margin: 3px;
+    width: 200px;
+    height: 200px;
+    display: grid;
+    grid-template:
+        'icon'
+        'name'
+        'price';
+    grid-template-rows: auto 30px 30px;
+    background-color: lightgray;
+    cursor: pointer;
+    font-size: 22px;
+}
+.store .item .icon {
+    grid-area: icon;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 4px solid black;
+}
+.store .item:hover .icon {
+    border-color: white;
+}
+.store .item .name {
+    grid-area: name;
+}
+.store .item .price {
+    grid-area: price;
+}
+.store .coinicon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url('../img/coin.png');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    vertical-align: middle;
+}

@@ -1,2 +1,4 @@
 .vscode
-js
+www/js
+config.php
+lib/vendor
