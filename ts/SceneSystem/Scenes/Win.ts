@@ -182,18 +182,15 @@ class Win extends Scene {
     }
 
     public load() : void {
-        this.main.innerHTML = `
-            <div class="winner noselect">
-                Gratulálok!
-            </div>
-            <audio autoplay>
-                <source src="audio/win.mp3" type="audio/mpeg">
-            </auduo>
-        `;
+        const __this = this;
 
-        window.setTimeout(function() {
-            SceneManager.ChangeScene(new Menu(false));
-        }, 8000);
+        HtmlLoader.LoadModule("win").then(function(html) {
+            __this.main.innerHTML = html;
+        }).then(function() {
+            window.setTimeout(function() {
+                SceneManager.ChangeScene(new Menu(false));
+            }, 8000);
+        });
     }
 
     public unload() : void {

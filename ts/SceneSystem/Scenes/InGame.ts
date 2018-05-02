@@ -52,63 +52,17 @@ class InGame extends Scene {
     public load() : void {
         const __this = this;
 
-        this.main.innerHTML = `
-            <div class="fullscreen background" id="sudokubg"></div>
-            <div class="gamearea noselect">
-                <div class="header-left">
-                    <div class="circlebutton" id="exitbtn">
-                        <i class="material-icons">exit_to_app</i>
-                    </div>
-                </div>
-                <div class="header-center">
-                    <div id="timer" class="timer"></div>
-                </div>
-                <div class="header-right">
-                    <div class="circlebutton" id="settingsopener">
-                        <i class="material-icons">settings</i>
-                    </div>
-                </div>
-                <div class="gamebody">
-                    <table id="gametable"></table>
-                </div>
-                <div class="celloptions"></div>
-            </div>
-            <div class="watermark-animation" id="sadface">&#128542;</div>
-            <div class="dialog-container noselect" id="settingsdialog">
-                <div class="circlebutton close">
-                    <i class="material-icons">close</i>
-                </div>
-                <div class="dialog">
-                    <h2>Beállítások</h2>
-                    <button class="menubutton" id="settings_volume">???</button>
-                    <button class="menubutton" id="settings_backgroundchange">Háttérkép megváltoztatása</button>
-                    <p>
-                        <label class="customcheckbox">
-                            <input type="checkbox" id="settings_checkwhenset" ${this.checkCellWhenChanged ? "checked" : ""}>
-                            <span class="checkbox">
-                                <span class="tick"></span>
-                            </span>
-                            Lerakott elemek ellenőrzése
-                        </label>
-                    </p>
-                    <p>
-                        <label class="customcheckbox">
-                            <input type="checkbox" id="settings_helpicons" ${this.helpIcons ? "checked" : ""}>
-                            <span class="checkbox">
-                                <span class="tick"></span>
-                            </span>
-                            Csak az elfogadott lehetőségek jelenjenek meg
-                        </label>
-                    </p>
-                </div>
-            </div>
-            <audio autoplay loop id="backgroundmusic">
-                <source src="audio/music.mp3" type="audio/mpeg">
-            </auduo>
-            <audio id="clickeffect">
-                <source src="audio/click.mp3" type="audio/mpeg">
-            </auduo>
-        `;
+        this.main.innerHTML = 'Loading...';
+
+        HtmlLoader.LoadModule("game").then(function(html) {
+            __this.main.innerHTML = html;
+        }).then(function() {
+            __this.OnHtmlLoaded();
+        });
+    }
+
+    private OnHtmlLoaded() : void {
+        const __this = this;
 
         this.audioPlayer = ($("#backgroundmusic") as HTMLAudioElement);
         this.timerModule = ($("#timer") as HTMLAudioElement);
@@ -154,6 +108,9 @@ class InGame extends Scene {
             __this.helpIcons = ($("#settings_helpicons") as HTMLInputElement).checked;
             __this.render();
         });
+
+        ($("#settings_checkwhenset") as HTMLInputElement).checked = this.checkCellWhenChanged;
+        ($("#settings_helpicons") as HTMLInputElement).checked = this.helpIcons;
 
         this.changeBackground();
         this.render();
